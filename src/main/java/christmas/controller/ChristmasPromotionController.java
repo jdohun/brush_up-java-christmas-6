@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import christmas.domain.model.classes.decemberEventPlan.DecemberEventPlan;
 import christmas.domain.model.classes.expectedVisitDay.ExpectedVisitDay;
 import christmas.domain.model.classes.orderInfo.OrderInfo;
@@ -13,9 +14,12 @@ public class ChristmasPromotionController {
     private static final OutputView OUTPUT_VIEW = OutputView.getInstance();
 
     public void run() {
-        OUTPUT_VIEW.showGreetings();
-        DecemberEventPlan decemberEventPlan = inputDecemberEventPlan();
-
+        try {
+            OUTPUT_VIEW.showGreetings();
+            DecemberEventPlan decemberEventPlan = inputDecemberEventPlan();
+        } finally {
+            releaseResources();
+        }
     }
 
     private ExpectedVisitDay inputExpectedVisitDay() {
@@ -41,5 +45,9 @@ public class ChristmasPromotionController {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private void releaseResources() {
+        Console.close();
     }
 }
