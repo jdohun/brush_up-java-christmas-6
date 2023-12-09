@@ -18,7 +18,7 @@ public final class InputView {
         return expectedVisitDay;
     }
 
-    public String inputOrder() {
+    public String inputOrderInfo() {
         System.out.println(InputMessage.INPUT_ORDER);
         String order = Console.readLine();
         validateInput(order);
@@ -30,7 +30,7 @@ public final class InputView {
         InputValidator.isNotEmpty(input);
     }
 
-    class Holder {
+    private class Holder {
         private static final InputView INPUT_VIEW = new InputView();
     }
 }
