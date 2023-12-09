@@ -27,8 +27,7 @@ public class ChristmasPromotionController {
     }
 
     private OrderInfo inputOrderInfo() {
-        String inputOrderInfo = INPUT_VIEW.inputOrderInfo();
-        return OrderInfo.from(inputOrderInfo);
+        return OrderInfo.from(INPUT_VIEW.inputOrderInfo());
     }
 
     private DecemberEventPlan inputDecemberEventPlan() {
