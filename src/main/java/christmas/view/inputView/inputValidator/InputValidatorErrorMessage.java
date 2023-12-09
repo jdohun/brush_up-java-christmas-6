@@ -2,7 +2,7 @@ package christmas.view.inputView.inputValidator;
 
 import static christmas.util.ErrorMessagePrefix.ERROR_MESSAGE_PREFIX;
 
-enum InputValidatorErrorMessage {
+public enum InputValidatorErrorMessage {
     ERROR_NULL("null 을 입력할 수 없습니다."),
     ERROR_EMPTY("빈 문자열을 입력할 수 없습니다.");
     
