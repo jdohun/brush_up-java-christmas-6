@@ -1,6 +1,7 @@
 package christmas.domain.model.classes.orderInfo;
 
 import christmas.domain.model.enums.menu.Menu;
+import christmas.dto.OrderInfoDto;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -121,5 +122,15 @@ public class OrderInfo {
         if (!containsNonBeverage) {
             throw new IllegalArgumentException(ERROR_ORDER_ONLY_BEVERAGE.getMessage());
         }
+    }
+
+    public int calculateTotalAmount() {
+        return orderInfo.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrice() * entry.getValue())
+                .sum();
+    }
+
+    public Map<Menu, Integer> getImmutableOrderInfo() {
+        return orderInfo;
     }
 }
