@@ -1,6 +1,10 @@
-package christmas.domain.model.enums;
+package christmas.domain.model.enums.menu;
 
-import static christmas.domain.model.enums.MenuCategory.*;
+import java.util.Arrays;
+import java.util.NoSuchElementException;
+
+import static christmas.domain.model.enums.menu.MenuCategory.*;
+import static christmas.domain.model.enums.menu.MenuErrorMessage.ERROR_MENU_NOT_FOUND;
 
 public enum Menu {
     BUTTON_MUSHROOM_SOUP(APPETIZER, "양송이수프", 6_000),
@@ -42,5 +46,17 @@ public enum Menu {
 
     public int getPrice() {
         return this.price;
+    }
+
+    public static boolean isExistentMenu(String menuName) {
+        return Arrays.stream(values())
+                .anyMatch(menu -> menu.name.equals(menuName));
+    }
+
+    public static Menu findByName(String menuName) {
+        return Arrays.stream(values())
+                .filter(menu -> menu.name.equals(menuName))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException(ERROR_MENU_NOT_FOUND.getMessage()));
     }
 }
