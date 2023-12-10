@@ -1,9 +1,8 @@
 package christmas.domain.model.classes.expectedVisitDay;
 
-import christmas.util.UtilPattern;
-
 import java.time.LocalDate;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static christmas.domain.model.classes.expectedVisitDay.ExpectedVisitDayErrorMessage.ERROR_INVALID_EXPECTED_DAY;
 
@@ -12,16 +11,19 @@ public class ExpectedVisitDay {
     private static final int MONTH = 12;
     private static final int START_OF_RANGE = 1;
     private static final int END_OF_RANGE = 31;
+
+    private static final Pattern EXPECTED_VISIT_DAY_PATTERN = Pattern.compile("^\\d+$");
+
     private final LocalDate date;
 
-    private ExpectedVisitDay(int expectedVisitDay) {
-        validate(expectedVisitDay);
-        this.date = LocalDate.of(YEAR, MONTH, expectedVisitDay);
+    private ExpectedVisitDay(LocalDate date) {
+        this.date = date;
     }
 
     public static ExpectedVisitDay from(String inputExpectedVisitDay) {
         int expectedVisitDay = parseExpectedVisitDay(inputExpectedVisitDay);
-        return new ExpectedVisitDay(expectedVisitDay);
+        validate(expectedVisitDay);
+        return new ExpectedVisitDay(LocalDate.of(YEAR, MONTH, expectedVisitDay));
     }
 
     private static void validate(int expectedVisitDay) {
@@ -35,7 +37,7 @@ public class ExpectedVisitDay {
     }
 
     private static int parseExpectedVisitDay(String inputExpectedVisitDay) {
-        Matcher matcher = UtilPattern.INTEGER_PATTERN.getPattern().matcher(inputExpectedVisitDay);
+        Matcher matcher = EXPECTED_VISIT_DAY_PATTERN.matcher(inputExpectedVisitDay);
         if (!matcher.matches()) {
             throw new IllegalArgumentException(ERROR_INVALID_EXPECTED_DAY.getMessage());
         }
