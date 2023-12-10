@@ -36,18 +36,6 @@ public enum Menu {
         this.price = price;
     }
 
-    public MenuCategory getMenuCategory() {
-        return this.menuCategory;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public int getPrice() {
-        return this.price;
-    }
-
     public static boolean isExistentMenu(String menuName) {
         return Arrays.stream(values())
                 .anyMatch(menu -> menu.name.equals(menuName));
@@ -58,5 +46,17 @@ public enum Menu {
                 .filter(menu -> menu.name.equals(menuName))
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException(ERROR_MENU_NOT_FOUND.getMessage()));
+    }
+
+    public boolean isBeverage() {
+        return this.menuCategory == BEVERAGE;
+    }
+
+    private String getName() {
+        return this.name;
+    }
+
+    public int getPrice() {
+        return this.price;
     }
 }
