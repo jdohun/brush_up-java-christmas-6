@@ -43,4 +43,12 @@ public class ExpectedVisitDay {
         }
         return Integer.parseInt(inputExpectedVisitDay);
     }
+
+    public boolean isDateWithinEventPeriod(EventDateChecker eventDateChecker) {
+        return eventDateChecker.isWithinEventPeriod(date);
+    }
+
+    public int calculateEventBenefitByDate(DateBasedDiscountCalculator dateBasedDiscountCalculator) {
+        return dateBasedDiscountCalculator.calculateDiscount(date);
+    }
 }
