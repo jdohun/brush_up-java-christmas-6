@@ -1,6 +1,7 @@
 package christmas.domain.model.classes.orderInfo;
 
 import christmas.domain.model.enums.menu.Menu;
+import christmas.dto.MenuAndQuantityDto;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -137,5 +138,11 @@ public class OrderInfo {
                 .filter(entry -> entry.getKey().isDessert())
                 .mapToInt(Map.Entry::getValue)
                 .sum();
+    }
+
+    public List<MenuAndQuantityDto> toDtoList() {
+        return orderInfo.entrySet().stream()
+                .map(entry -> new MenuAndQuantityDto(entry.getKey(), entry.getValue()))
+                .collect(Collectors.toList());
     }
 }
