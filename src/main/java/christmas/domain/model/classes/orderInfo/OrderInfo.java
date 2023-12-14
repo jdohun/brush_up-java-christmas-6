@@ -124,4 +124,18 @@ public class OrderInfo {
                 .mapToInt(entry -> entry.getKey().getPrice() * entry.getValue())
                 .sum();
     }
+
+    public int countMainMenus() {
+        return orderInfo.entrySet().stream()
+                .filter(entry -> entry.getKey().isMain())
+                .mapToInt(Map.Entry::getValue)
+                .sum();
+    }
+
+    public int countDessertMenus() {
+        return orderInfo.entrySet().stream()
+                .filter(entry -> entry.getKey().isDessert())
+                .mapToInt(Map.Entry::getValue)
+                .sum();
+    }
 }
