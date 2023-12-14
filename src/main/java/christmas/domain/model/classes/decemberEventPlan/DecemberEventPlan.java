@@ -3,8 +3,8 @@ package christmas.domain.model.classes.decemberEventPlan;
 import christmas.domain.model.classes.expectedVisitDay.DateBasedDiscountCalculator;
 import christmas.domain.model.classes.expectedVisitDay.EventDateChecker;
 import christmas.domain.model.classes.expectedVisitDay.ExpectedVisitDay;
-import christmas.domain.model.classes.orderInfo.OrderInfo;
 import christmas.domain.model.classes.orderInfo.DiscountCriteriaChecker;
+import christmas.domain.model.classes.orderInfo.OrderInfo;
 
 public class DecemberEventPlan {
 
@@ -30,5 +30,13 @@ public class DecemberEventPlan {
 
     public int calculateEventBenefitByDate(DateBasedDiscountCalculator dateBasedDiscountCalculator) {
         return expectedVisitDay.calculateEventBenefitByDate(dateBasedDiscountCalculator);
+    }
+
+    public int countMainMenus() {
+        return orderInfo.countMainMenus();
+    }
+
+    public int countDessertMenus() {
+        return orderInfo.countDessertMenus();
     }
 }
