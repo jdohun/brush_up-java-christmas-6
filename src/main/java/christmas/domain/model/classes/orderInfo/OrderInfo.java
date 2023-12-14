@@ -1,7 +1,6 @@
 package christmas.domain.model.classes.orderInfo;
 
 import christmas.domain.model.enums.menu.Menu;
-import christmas.dto.OrderInfoDto;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -35,7 +34,7 @@ public class OrderInfo {
 
     private static Map<Menu, Integer> validateAndMapOrderInfo(String inputOrderInfo) {
         String[] splitOrderItems = validateAndSplitOrderInfo(inputOrderInfo);
-        List<String> validatedOrderItems = validateAndFormatSplitOrderItems(splitOrderItems);
+        List<String> validatedOrderItems = validateSplitOrderItems(splitOrderItems);
         return mapMenuAndCount(validatedOrderItems);
     }
 
@@ -51,22 +50,18 @@ public class OrderInfo {
         }
     }
 
-    private static List<String> validateAndFormatSplitOrderItems(String[] splitOrders) {
+    private static List<String> validateSplitOrderItems(String[] splitOrders) {
         return Arrays.stream(splitOrders)
-                .map(menuWithCount -> validateAndFormatOrderItem(menuWithCount.trim()))
+                .map(menuWithCount -> validateOrderItemFormat(menuWithCount.trim()))
                 .collect(Collectors.toList());
     }
 
-    private static String validateAndFormatOrderItem(String orderItem) {
-        validateOrderItemFormat(orderItem);
-        return orderItem;
-    }
-
-    private static void validateOrderItemFormat(String orderItem) {
+    private static String validateOrderItemFormat(String orderItem) {
         Matcher matcher = ORDER_ITEM_PATTERN.matcher(orderItem);
         if (!matcher.matches()) {
             throw new IllegalArgumentException(ERROR_INVALID_ORDER.getMessage());
         }
+        return orderItem;
     }
 
     private static Map<Menu, Integer> mapMenuAndCount(List<String> validatedOrderItems) {
@@ -86,7 +81,7 @@ public class OrderInfo {
             totalItemCount += itemCount;
         }
 
-        validateNotOnlyBeverageOrdered(orderResult);
+        validateContainsNonBeverageOrder(orderResult);
         return orderResult;
     }
 
@@ -115,7 +110,7 @@ public class OrderInfo {
         }
     }
 
-    public static void validateNotOnlyBeverageOrdered(Map<Menu, Integer> orderResult) {
+    public static void validateContainsNonBeverageOrder(Map<Menu, Integer> orderResult) {
         boolean containsNonBeverage = orderResult.keySet().stream()
                 .anyMatch(menu -> !menu.isBeverage());
 
@@ -128,9 +123,5 @@ public class OrderInfo {
         return orderInfo.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getPrice() * entry.getValue())
                 .sum();
-    }
-
-    public Map<Menu, Integer> getImmutableOrderInfo() {
-        return orderInfo;
     }
 }
