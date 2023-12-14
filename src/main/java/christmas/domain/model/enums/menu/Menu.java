@@ -21,10 +21,7 @@ public enum Menu {
 
     ZERO_COKE(BEVERAGE, "제로콜라", 3_000),
     RED_WINE(BEVERAGE, "레드와인", 60_000),
-    CHAMPAGNE(BEVERAGE, "샴페인", 25_000),
-
-    GIVEAWAY_NONE(GIVEAWAY, "없음", 0),
-    GIVEAWAY_CHAMPAGNE(GIVEAWAY, CHAMPAGNE.getName(), CHAMPAGNE.getPrice());
+    CHAMPAGNE(BEVERAGE, "샴페인", 25_000);
 
     private final MenuCategory menuCategory;
     private final String name;
@@ -52,7 +49,15 @@ public enum Menu {
         return this.menuCategory == BEVERAGE;
     }
 
-    private String getName() {
+    public boolean isMain() {
+        return this.menuCategory == MAIN;
+    }
+
+    public boolean isDessert() {
+        return this.menuCategory == DESSERT;
+    }
+
+    public String getName() {
         return this.name;
     }
 
