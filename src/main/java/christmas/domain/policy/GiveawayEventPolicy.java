@@ -3,8 +3,8 @@ package christmas.domain.policy;
 import christmas.domain.model.classes.decemberEventPlan.DecemberEventPlan;
 import christmas.domain.model.enums.AppliedEventPolicyName;
 import christmas.domain.model.enums.Giveaway;
-import christmas.dto.eventResult.EventResult;
-import christmas.dto.eventResult.impl.GiveawayEventResultDto;
+import christmas.domain.model.classes.eventResult.EventResult;
+import christmas.domain.model.classes.eventResult.impl.GiveawayEventResult;
 
 import java.util.Map;
 import java.util.Optional;
@@ -32,6 +32,6 @@ class GiveawayEventPolicy {
     }
 
     private static EventResult createGiveawayEventResult() {
-        return new GiveawayEventResultDto(Map.of(Giveaway.GIVEAWAY_CHAMPAGNE, 1));
+        return new GiveawayEventResult(Map.of(Giveaway.GIVEAWAY_CHAMPAGNE, 1));
     }
 }

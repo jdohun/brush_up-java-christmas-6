@@ -2,9 +2,9 @@ package christmas.domain.policy;
 
 import christmas.domain.model.classes.decemberEventPlan.DecemberEventPlan;
 import christmas.domain.model.enums.AppliedEventPolicyName;
-import christmas.dto.eventResult.DiscountAmountDto;
-import christmas.dto.eventResult.EventResult;
-import christmas.dto.eventResult.impl.DiscountEventResultDto;
+import christmas.domain.model.classes.eventResult.DiscountAmount;
+import christmas.domain.model.classes.eventResult.EventResult;
+import christmas.domain.model.classes.eventResult.impl.DiscountEventResult;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -38,7 +38,7 @@ class WeekdayDiscountPolicy {
     }
 
     private static EventResult calculateDiscountEventResult(DecemberEventPlan decemberEventPlan) {
-        return new DiscountEventResultDto(new DiscountAmountDto(calculateEventBenefit(decemberEventPlan)));
+        return new DiscountEventResult(new DiscountAmount(calculateEventBenefit(decemberEventPlan)));
     }
 
     private static int calculateEventBenefit(DecemberEventPlan decemberEventPlan) {

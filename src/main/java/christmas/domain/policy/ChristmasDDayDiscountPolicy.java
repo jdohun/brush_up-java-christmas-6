@@ -2,9 +2,9 @@ package christmas.domain.policy;
 
 import christmas.domain.model.classes.decemberEventPlan.DecemberEventPlan;
 import christmas.domain.model.enums.AppliedEventPolicyName;
-import christmas.dto.eventResult.DiscountAmountDto;
-import christmas.dto.eventResult.EventResult;
-import christmas.dto.eventResult.impl.DiscountEventResultDto;
+import christmas.domain.model.classes.eventResult.DiscountAmount;
+import christmas.domain.model.classes.eventResult.EventResult;
+import christmas.domain.model.classes.eventResult.impl.DiscountEventResult;
 
 import java.time.LocalDate;
 import java.util.Map;
@@ -62,6 +62,6 @@ class ChristmasDDayDiscountPolicy {
     }
 
     private static EventResult createDiscountEventResult(int discountAmount) {
-        return new DiscountEventResultDto(new DiscountAmountDto(discountAmount));
+        return new DiscountEventResult(new DiscountAmount(discountAmount));
     }
 }
