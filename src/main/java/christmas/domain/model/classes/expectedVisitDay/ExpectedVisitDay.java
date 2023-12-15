@@ -1,5 +1,7 @@
 package christmas.domain.model.classes.expectedVisitDay;
 
+import christmas.dto.ExpectedVisitDayDto;
+
 import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -50,5 +52,9 @@ public class ExpectedVisitDay {
 
     public int calculateEventBenefitByDate(DateBasedDiscountCalculator dateBasedDiscountCalculator) {
         return dateBasedDiscountCalculator.calculateDiscount(date);
+    }
+
+    public ExpectedVisitDayDto toDto() {
+        return new ExpectedVisitDayDto(date);
     }
 }
