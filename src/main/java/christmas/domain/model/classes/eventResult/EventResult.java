@@ -1,4 +1,4 @@
-package christmas.dto.eventResult;
+package christmas.domain.model.classes.eventResult;
 
 public interface EventResult<T> {
     T getResult();

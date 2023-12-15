@@ -1,8 +1,9 @@
 package christmas.domain.policy;
 
 import christmas.domain.model.classes.decemberEventPlan.DecemberEventPlan;
+import christmas.domain.model.classes.eventResult.AppliedEventResult;
 import christmas.domain.model.enums.AppliedEventPolicyName;
-import christmas.dto.eventResult.EventResult;
+import christmas.domain.model.classes.eventResult.EventResult;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -29,11 +30,11 @@ public class DecemberEventApplyPolicy {
     private DecemberEventApplyPolicy() {
     }
 
-    public static Optional<Map<AppliedEventPolicyName, EventResult>> applyEventPolicy(DecemberEventPlan decemberEventPlan) {
+    public static AppliedEventResult applyEventPolicy(DecemberEventPlan decemberEventPlan) {
         if (areConditionsSatisfied(decemberEventPlan)) {
-            return Optional.of(applyEventPolicies(decemberEventPlan));
+            return new AppliedEventResult(Optional.of(applyEventPolicies(decemberEventPlan)));
         }
-        return Optional.empty();
+        return new AppliedEventResult(Optional.empty());
     }
 
     private static boolean areConditionsSatisfied(DecemberEventPlan decemberEventPlan) {
