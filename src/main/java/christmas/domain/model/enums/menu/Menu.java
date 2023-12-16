@@ -27,6 +27,8 @@ public enum Menu {
     private final String name;
     private final int price;
 
+    private static final Menu[] menus = Menu.values();
+
     Menu(MenuCategory menuCategory, String name, int price) {
         this.menuCategory = menuCategory;
         this.name = name;
@@ -34,12 +36,12 @@ public enum Menu {
     }
 
     public static boolean isExistentMenu(String menuName) {
-        return Arrays.stream(values())
+        return Arrays.stream(menus)
                 .anyMatch(menu -> menu.name.equals(menuName));
     }
 
     public static Menu findByName(String menuName) {
-        return Arrays.stream(values())
+        return Arrays.stream(menus)
                 .filter(menu -> menu.name.equals(menuName))
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException(ERROR_MENU_NOT_FOUND.getMessage()));
