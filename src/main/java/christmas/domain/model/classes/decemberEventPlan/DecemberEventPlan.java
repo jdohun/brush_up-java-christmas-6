@@ -1,9 +1,10 @@
 package christmas.domain.model.classes.decemberEventPlan;
 
-import christmas.domain.model.classes.expectedVisitDay.DateBasedDiscountCalculator;
-import christmas.domain.model.classes.expectedVisitDay.EventDateChecker;
+import christmas.domain.promotion.strategy.discountStrategy.byDate.DateBasedDiscountStrategy;
+import christmas.domain.promotion.strategy.dateCheckStrategy.DateCheckStrategy;
 import christmas.domain.model.classes.expectedVisitDay.ExpectedVisitDay;
 import christmas.domain.model.classes.orderInfo.OrderInfo;
+import christmas.dto.DiscountAmount;
 import christmas.dto.TotalAmount;
 
 public class DecemberEventPlan {
@@ -21,12 +22,12 @@ public class DecemberEventPlan {
         return totalAmountBeforeDiscount;
     }
 
-    public boolean isPlanWithinEventPeriod(EventDateChecker eventDateChecker) {
-        return expectedVisitDay.isDateWithinEventPeriod(eventDateChecker);
+    public boolean isDateSatisfyingDateCondition(DateCheckStrategy dateCheckStrategy) {
+        return expectedVisitDay.isSatisfyingCondition(dateCheckStrategy);
     }
 
-    public int calculateEventBenefitByDate(DateBasedDiscountCalculator dateBasedDiscountCalculator) {
-        return expectedVisitDay.calculateEventBenefitByDate(dateBasedDiscountCalculator);
+    public DiscountAmount calculateDiscountAmountByDate(DateBasedDiscountStrategy dateBasedDiscountStrategy) {
+        return new DiscountAmount(expectedVisitDay.calculateDiscountAmountByDate(dateBasedDiscountStrategy));
     }
 
     public int countMainMenus() {
