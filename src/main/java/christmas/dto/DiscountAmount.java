@@ -1,4 +1,4 @@
-package christmas.domain.model.classes.eventResult;
+package christmas.dto;
 
 public record DiscountAmount(int discountAmount) {
 }
