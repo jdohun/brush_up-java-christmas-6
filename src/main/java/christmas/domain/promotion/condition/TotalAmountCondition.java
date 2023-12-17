@@ -7,13 +7,13 @@ public enum TotalAmountCondition {
     GIVEAWAY_EVENT_THRESHOLD(120_000),
     ;
 
-    int preconditionAmount;
+    int amountCondition;
 
-    TotalAmountCondition(int preconditionAmount) {
-        this.preconditionAmount = preconditionAmount;
+    TotalAmountCondition(int amountCondition) {
+        this.amountCondition = amountCondition;
     }
 
-    public boolean isSatisfyingPrecondition(TotalAmount totalAmount) {
-        return this.preconditionAmount <= totalAmount.amount();
+    public boolean isTotalAmountSufficient(TotalAmount totalAmount) {
+        return this.amountCondition <= totalAmount.amount();
     }
 }
