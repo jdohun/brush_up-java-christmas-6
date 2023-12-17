@@ -1,13 +1,12 @@
-package christmas.domain.promotion.condition;
+package christmas.domain.promotion.strategy.totalAmountCheckStrategy;
 
 import christmas.dto.TotalAmount;
 
 public enum TotalAmountCondition {
     MINIMUM_ORDER_AMOUNT(10_000),
-    GIVEAWAY_EVENT_THRESHOLD(120_000),
-    ;
+    GIVEAWAY_EVENT_THRESHOLD(120_000);
 
-    int amountCondition;
+    final int amountCondition;
 
     TotalAmountCondition(int amountCondition) {
         this.amountCondition = amountCondition;
