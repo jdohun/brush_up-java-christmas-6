@@ -10,6 +10,10 @@ public final class OutputView {
         return Holder.OUTPUT_VIEW;
     }
 
+    public void separateLine() {
+        System.out.println();
+    }
+
     public void showGreetings() {
         System.out.println(GREETINGS.getMessage());
     }
