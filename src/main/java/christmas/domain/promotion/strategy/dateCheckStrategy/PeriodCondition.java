@@ -1,11 +1,11 @@
-package christmas.domain.promotion.condition;
+package christmas.domain.promotion.strategy.dateCheckStrategy;
 
 import christmas.domain.model.classes.decemberEventPlan.DecemberEventPlan;
 
 import java.time.LocalDate;
 
-import static christmas.domain.promotion.common.DecemberPromotionDate.EVENT_PERIOD_MONTH;
-import static christmas.domain.promotion.common.DecemberPromotionDate.EVENT_PERIOD_YEAR;
+import static christmas.domain.promotion.precondition.DecemberPromotionPrecondition.EVENT_PERIOD_MONTH;
+import static christmas.domain.promotion.precondition.DecemberPromotionPrecondition.EVENT_PERIOD_YEAR;
 
 public enum PeriodCondition {
      UNTIL_CHRISTMAS(
@@ -29,7 +29,7 @@ public enum PeriodCondition {
     }
 
     public boolean isPlanWithinPeriod(DecemberEventPlan decemberEventPlan) {
-        return decemberEventPlan.isPlanWithinEventPeriod(this::isDateWithinPeriod);
+        return decemberEventPlan.isDateSatisfyingDateCondition(this::isDateWithinPeriod);
     }
 
     private boolean isDateWithinPeriod(LocalDate dateOfPlan) {
