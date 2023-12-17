@@ -18,10 +18,10 @@ public enum SpecificDateCondition {
             LocalDate.of(EVENT_PERIOD_YEAR, EVENT_PERIOD_MONTH, 31)
     ));
 
-    private final Set<LocalDate> specialPromotionDates;
+    private final Set<LocalDate> specificDates;
 
-    SpecificDateCondition(Set<LocalDate> specialPromotionDates) {
-        this.specialPromotionDates = specialPromotionDates;
+    SpecificDateCondition(Set<LocalDate> specificDates) {
+        this.specificDates = specificDates;
     }
 
     public boolean isSpecialDay(DecemberEventPlan decemberEventPlan) {
@@ -29,7 +29,7 @@ public enum SpecificDateCondition {
     }
 
     private boolean hasMatchingDate(LocalDate dateOfPlan) {
-        return specialPromotionDates.contains(dateOfPlan);
+        return specificDates.contains(dateOfPlan);
     }
 }
 
