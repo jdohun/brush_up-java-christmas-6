@@ -1,5 +1,7 @@
 package christmas.domain.model.classes.expectedVisitDay;
 
+import christmas.domain.promotion.strategy.dateCheckStrategy.DateCheckStrategy;
+import christmas.domain.promotion.strategy.discountStrategy.byDate.DateBasedDiscountStrategy;
 import christmas.dto.ExpectedVisitDayDto;
 
 import java.time.LocalDate;
@@ -46,12 +48,12 @@ public class ExpectedVisitDay {
         return Integer.parseInt(inputExpectedVisitDay);
     }
 
-    public boolean isDateWithinEventPeriod(EventDateChecker eventDateChecker) {
-        return eventDateChecker.isWithinEventPeriod(date);
+    public boolean isSatisfyingCondition(DateCheckStrategy dateCheckStrategy) {
+        return dateCheckStrategy.isSatisfyingCondition(date);
     }
 
-    public int calculateEventBenefitByDate(DateBasedDiscountCalculator dateBasedDiscountCalculator) {
-        return dateBasedDiscountCalculator.calculateDiscount(date);
+    public int calculateDiscountAmountByDate(DateBasedDiscountStrategy dateBasedDiscountStrategy) {
+        return dateBasedDiscountStrategy.calculateDiscount(date);
     }
 
     public ExpectedVisitDayDto toDto() {
