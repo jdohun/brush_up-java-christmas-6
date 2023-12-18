@@ -1,15 +1,16 @@
 package christmas.domain.promotion.context.discount;
 
 import christmas.domain.model.classes.decemberEventPlan.DecemberEventPlan;
-import christmas.domain.promotion.precondition.DecemberPromotionPrecondition;
+import christmas.domain.promotion.precondition.ChristmasPromotionPrecondition;
 import christmas.domain.promotion.strategy.dateCheckStrategy.SpecificDateCondition;
 import christmas.dto.DiscountAmount;
 
 import java.util.Optional;
 
-public class SpecialDayPromotion implements DecemberPromotionPrecondition {
+public class SpecialDayPromotion implements ChristmasPromotionPrecondition {
     private static final int SPECIAL_DISCOUNT_AMOUNT = 1_000;
     private static final SpecificDateCondition SPECIFIC_DATE_CONDITION = SpecificDateCondition.SPECIAL_DATES;
+    private static final String PROMOTION_NAME = "특별 할인";
 
     private SpecialDayPromotion() {
     }
@@ -26,7 +27,7 @@ public class SpecialDayPromotion implements DecemberPromotionPrecondition {
     }
 
     private boolean isApplicable(DecemberEventPlan decemberEventPlan) {
-        return DecemberPromotionPrecondition.isSatisfyingPrecondition(decemberEventPlan)
+        return ChristmasPromotionPrecondition.isSatisfyingPrecondition(decemberEventPlan)
                 && SpecificDateCondition.SPECIAL_DATES.isSpecialDay(decemberEventPlan);
     }
 

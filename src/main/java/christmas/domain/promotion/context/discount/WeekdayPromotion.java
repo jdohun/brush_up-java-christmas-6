@@ -1,17 +1,18 @@
 package christmas.domain.promotion.context.discount;
 
 import christmas.domain.model.classes.decemberEventPlan.DecemberEventPlan;
-import christmas.domain.promotion.precondition.DecemberPromotionPrecondition;
+import christmas.domain.promotion.precondition.ChristmasPromotionPrecondition;
 import christmas.domain.promotion.strategy.dateCheckStrategy.DayOfWeekCondition;
 import christmas.domain.promotion.strategy.discountStrategy.byMenu.DiscountByDecemberEventPlan;
 import christmas.dto.DiscountAmount;
 
 import java.util.Optional;
 
-public class WeekdayPromotion implements DecemberPromotionPrecondition {
+public class WeekdayPromotion implements ChristmasPromotionPrecondition {
     public static final int WEEKDAY_DISCOUNT_AMOUNT = 2_023;
     private static final DayOfWeekCondition DAY_OF_WEEK_CONDITION = DayOfWeekCondition.IS_WEEKDAY;
     private static final DiscountByDecemberEventPlan DISCOUNT_BY_DECEMBER_EVENT_PLAN = DiscountByDecemberEventPlan.BY_DESSERT_COUNT;
+    private static final String PROMOTION_NAME = "평일 할인";
 
     private WeekdayPromotion() {
     }
@@ -28,7 +29,7 @@ public class WeekdayPromotion implements DecemberPromotionPrecondition {
     }
 
     private boolean isApplicable(DecemberEventPlan decemberEventPlan) {
-        return DecemberPromotionPrecondition.isSatisfyingPrecondition(decemberEventPlan)
+        return ChristmasPromotionPrecondition.isSatisfyingPrecondition(decemberEventPlan)
                 && DAY_OF_WEEK_CONDITION.isPlanSatisfyingCondition(decemberEventPlan);
     }
 
