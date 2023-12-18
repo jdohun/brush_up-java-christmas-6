@@ -17,7 +17,7 @@ public class DecemberEventPlanController {
 
     public DecemberEventPlan run() {
         try {
-            OUTPUT_VIEW.showGreetings();
+            OUTPUT_VIEW.printGreetings();
             return inputDecemberEventPlan();
         } finally {
             releaseResources();
@@ -33,12 +33,12 @@ public class DecemberEventPlanController {
     }
 
     private DecemberEventPlan inputDecemberEventPlan() {
-        ExpectedVisitDay expectedVisitDay = repeatUntilNoException(this::inputExpectedVisitDay);
-        OrderInfo orderInfo = repeatUntilNoException(this::inputOrderInfo);
+        ExpectedVisitDay expectedVisitDay = repeatUntilNoIllegalException(this::inputExpectedVisitDay);
+        OrderInfo orderInfo = repeatUntilNoIllegalException(this::inputOrderInfo);
         return new DecemberEventPlan(expectedVisitDay, orderInfo);
     }
 
-    private <T> T repeatUntilNoException(Supplier<T> action) {
+    private <T> T repeatUntilNoIllegalException(Supplier<T> action) {
         while (true) {
             try {
                 return action.get();
