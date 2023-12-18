@@ -1,6 +1,6 @@
 package christmas.domain.model.enums;
 
-public enum AppliedEventPolicyName {
+public enum PromotionName {
     CHRISTMAS_D_DAY_DISCOUNT("크리스마스 디데이 할인"),
     WEEKDAY_DISCOUNT("평일 할인"),
     WEEKEND_DISCOUNT("주말 할인"),
@@ -9,7 +9,7 @@ public enum AppliedEventPolicyName {
 
     private final String eventName;
 
-    AppliedEventPolicyName(String eventName) {
+    PromotionName(String eventName) {
         this.eventName = eventName;
     }
 }
