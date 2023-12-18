@@ -1,10 +1,10 @@
 package christmas.domain.promotion.context.discount;
 
 import christmas.domain.model.classes.decemberEventPlan.DecemberEventPlan;
-import christmas.dto.DiscountAmount;
-import christmas.domain.promotion.strategy.dateCheckStrategy.PeriodCondition;
 import christmas.domain.promotion.precondition.DecemberPromotionPrecondition;
+import christmas.domain.promotion.strategy.dateCheckStrategy.PeriodCondition;
 import christmas.domain.promotion.strategy.discountStrategy.byDate.DiscountByDate;
+import christmas.dto.DiscountAmount;
 
 import java.util.Optional;
 
@@ -13,6 +13,13 @@ public class ChristmasDDayPromotion implements DecemberPromotionPrecondition {
     public static final int INCREASING_DISCOUNT_AMOUNT_PER_DAY = 100;
     private static final PeriodCondition PERIOD_CONDITION = PeriodCondition.UNTIL_CHRISTMAS;
     private static final DiscountByDate DISCOUNT_STRATEGY_BY_DATE = DiscountByDate.CHRISTMAS_D_DAY;
+
+    private ChristmasDDayPromotion() {
+    }
+
+    public static ChristmasDDayPromotion getInstance() {
+        return Holder.CHRISTMAS_D_DAY_PROMOTION;
+    }
 
     public Optional<DiscountAmount> apply(DecemberEventPlan decemberEventPlan) {
         if (isApplicable(decemberEventPlan)) {
@@ -28,5 +35,9 @@ public class ChristmasDDayPromotion implements DecemberPromotionPrecondition {
 
     private DiscountAmount calculateDiscountAmount(DecemberEventPlan decemberEventPlan) {
         return decemberEventPlan.calculateDiscountAmountByDate(DISCOUNT_STRATEGY_BY_DATE.getStrategy());
+    }
+
+    private static class Holder {
+        private static final ChristmasDDayPromotion CHRISTMAS_D_DAY_PROMOTION = new ChristmasDDayPromotion();
     }
 }
