@@ -1,6 +1,8 @@
 package christmas.view.errorView;
 
 public class ErrorView {
+    private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
+
     private ErrorView() {
     }
 
@@ -9,7 +11,7 @@ public class ErrorView {
     }
 
     public void showError(IllegalArgumentException illegalArgumentException) {
-        System.out.println(illegalArgumentException.getMessage());
+        System.out.println(ERROR_MESSAGE_PREFIX + illegalArgumentException.getMessage());
     }
 
     private class Holder {
