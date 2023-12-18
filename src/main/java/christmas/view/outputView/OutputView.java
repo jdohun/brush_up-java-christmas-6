@@ -14,7 +14,7 @@ public final class OutputView {
         System.out.println();
     }
 
-    public void showGreetings() {
+    public void printGreetings() {
         System.out.println(GREETINGS.getMessage());
     }
 
