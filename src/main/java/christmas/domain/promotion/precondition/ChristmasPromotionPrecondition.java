@@ -4,7 +4,7 @@ import christmas.domain.model.classes.decemberEventPlan.DecemberEventPlan;
 import christmas.domain.promotion.strategy.dateCheckStrategy.PeriodCondition;
 import christmas.domain.promotion.strategy.totalAmountCheckStrategy.TotalAmountCondition;
 
-public interface DecemberPromotionPrecondition {
+public interface ChristmasPromotionPrecondition {
     int EVENT_PERIOD_YEAR = 2023;
     int EVENT_PERIOD_MONTH = 12;
 
