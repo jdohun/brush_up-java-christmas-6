@@ -1,5 +1,8 @@
 package christmas.domain.promotion.strategy.discountStrategy.byDate;
 
+import christmas.domain.model.classes.decemberEventPlan.DecemberEventPlan;
+import christmas.dto.DiscountAmount;
+
 import static christmas.domain.promotion.context.discount.ChristmasDDayPromotion.DEFAULT_DISCOUNT_AMOUNT;
 import static christmas.domain.promotion.context.discount.ChristmasDDayPromotion.INCREASING_DISCOUNT_AMOUNT_PER_DAY;
 
@@ -12,7 +15,7 @@ public enum DiscountByDate {
         this.strategy = strategy;
     }
 
-    public DateBasedDiscountStrategy getStrategy(){
-        return strategy;
+    public DiscountAmount applyDiscount(DecemberEventPlan decemberEventPlan){
+        return decemberEventPlan.calculateDiscountAmountByDate(strategy);
     }
 }
