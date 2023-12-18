@@ -6,16 +6,18 @@ import christmas.domain.promotion.precondition.DecemberPromotionPrecondition;
 import christmas.domain.promotion.strategy.dateCheckStrategy.DayOfWeekCondition;
 import christmas.domain.promotion.strategy.discountStrategy.byMenu.DiscountByDecemberEventPlan;
 
+import java.util.Optional;
+
 public class WeekdayPromotion implements DecemberPromotionPrecondition {
     public static final int WEEKDAY_DISCOUNT_AMOUNT = 2_023;
     private static final DayOfWeekCondition DAY_OF_WEEK_CONDITION = DayOfWeekCondition.IS_WEEKDAY;
     private static final DiscountByDecemberEventPlan DISCOUNT_BY_DECEMBER_EVENT_PLAN = DiscountByDecemberEventPlan.BY_DESSERT_COUNT;
 
-    public DiscountAmount apply(DecemberEventPlan decemberEventPlan) {
+    public Optional<DiscountAmount> apply(DecemberEventPlan decemberEventPlan) {
         if (isApplicable(decemberEventPlan)) {
-            return calculateDiscountAmount(decemberEventPlan);
+            return Optional.of(calculateDiscountAmount(decemberEventPlan));
         }
-        return new DiscountAmount(0);
+        return Optional.empty();
     }
 
     private boolean isApplicable(DecemberEventPlan decemberEventPlan) {

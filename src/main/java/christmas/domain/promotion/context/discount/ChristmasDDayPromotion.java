@@ -6,17 +6,19 @@ import christmas.domain.promotion.strategy.dateCheckStrategy.PeriodCondition;
 import christmas.domain.promotion.precondition.DecemberPromotionPrecondition;
 import christmas.domain.promotion.strategy.discountStrategy.byDate.DiscountByDate;
 
+import java.util.Optional;
+
 public class ChristmasDDayPromotion implements DecemberPromotionPrecondition {
     public static final int DEFAULT_DISCOUNT_AMOUNT = 1_000;
     public static final int INCREASING_DISCOUNT_AMOUNT_PER_DAY = 100;
     private static final PeriodCondition PERIOD_CONDITION = PeriodCondition.UNTIL_CHRISTMAS;
     private static final DiscountByDate DISCOUNT_STRATEGY_BY_DATE = DiscountByDate.CHRISTMAS_D_DAY;
 
-    public DiscountAmount apply(DecemberEventPlan decemberEventPlan) {
+    public Optional<DiscountAmount> apply(DecemberEventPlan decemberEventPlan) {
         if (isApplicable(decemberEventPlan)) {
-            return calculateDiscountAmount(decemberEventPlan);
+            return Optional.of(calculateDiscountAmount(decemberEventPlan));
         }
-        return new DiscountAmount(0);
+        return Optional.empty();
     }
 
     private boolean isApplicable(DecemberEventPlan decemberEventPlan) {
