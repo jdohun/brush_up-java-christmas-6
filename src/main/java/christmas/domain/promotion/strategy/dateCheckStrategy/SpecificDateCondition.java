@@ -5,8 +5,8 @@ import christmas.domain.model.classes.decemberEventPlan.DecemberEventPlan;
 import java.time.LocalDate;
 import java.util.Set;
 
-import static christmas.domain.promotion.precondition.DecemberPromotionPrecondition.EVENT_PERIOD_MONTH;
-import static christmas.domain.promotion.precondition.DecemberPromotionPrecondition.EVENT_PERIOD_YEAR;
+import static christmas.domain.promotion.precondition.ChristmasPromotionPrecondition.EVENT_PERIOD_MONTH;
+import static christmas.domain.promotion.precondition.ChristmasPromotionPrecondition.EVENT_PERIOD_YEAR;
 
 public enum SpecificDateCondition {
     SPECIAL_DATES(Set.of(
