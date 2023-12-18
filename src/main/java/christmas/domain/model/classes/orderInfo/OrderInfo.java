@@ -15,12 +15,12 @@ import static christmas.domain.model.classes.orderInfo.OrderInfoErrorMessage.*;
 
 public class OrderInfo {
     public static final String ORDER_ITEM_DELIMITER  = ",";
-    public static final String ITEM_COUNT_DELIMITER  = "-";
+    public static final String ITEM_QUANTITY_DELIMITER  = "-";
 
-    private static final Pattern ORDER_ITEM_PATTERN = Pattern.compile("^[가-힣]+" + ITEM_COUNT_DELIMITER  + "[1-9][0-9]*$");
+    private static final Pattern ORDER_ITEM_PATTERN = Pattern.compile("^[가-힣]+" + ITEM_QUANTITY_DELIMITER  + "[1-9][0-9]*$");
     private static final Pattern INVALID_ORDER_PATTERN = Pattern.compile("^\\s*" + ORDER_ITEM_DELIMITER  + "|" + ORDER_ITEM_DELIMITER  + "\\s*" + ORDER_ITEM_DELIMITER  + "|" + ORDER_ITEM_DELIMITER  + "\\s*$");
 
-    private static final int MAX_TOTAL_COUNT = 20;
+    private static final int MAX_TOTAL_QUANTITY = 20;
 
     private final Map<Menu, Integer> orderInfo;
 
@@ -36,7 +36,7 @@ public class OrderInfo {
     private static Map<Menu, Integer> validateAndMapOrderInfo(String inputOrderInfo) {
         String[] splitOrderItems = validateAndSplitOrderInfo(inputOrderInfo);
         List<String> validatedOrderItems = validateSplitOrderItems(splitOrderItems);
-        return mapMenuAndCount(validatedOrderItems);
+        return mapMenuAndQuantity(validatedOrderItems);
     }
 
     private static String[] validateAndSplitOrderInfo(String inputOrderInfo) {
@@ -53,7 +53,7 @@ public class OrderInfo {
 
     private static List<String> validateSplitOrderItems(String[] splitOrders) {
         return Arrays.stream(splitOrders)
-                .map(menuWithCount -> validateOrderItemFormat(menuWithCount.trim()))
+                .map(menuWithQuantity -> validateOrderItemFormat(menuWithQuantity.trim()))
                 .collect(Collectors.toList());
     }
 
@@ -65,21 +65,21 @@ public class OrderInfo {
         return orderItem;
     }
 
-    private static Map<Menu, Integer> mapMenuAndCount(List<String> validatedOrderItems) {
+    private static Map<Menu, Integer> mapMenuAndQuantity(List<String> validatedOrderItems) {
         Map<Menu, Integer> orderResult = new HashMap<>();
-        int totalItemCount = 0;
+        int totalItemQuantity = 0;
 
         for (String orderItem : validatedOrderItems) {
-            String[] menuAndCount = orderItem.split(ITEM_COUNT_DELIMITER);
-            String menuName = menuAndCount[0];
+            String[] menuAndQuantity = orderItem.split(ITEM_QUANTITY_DELIMITER);
+            String menuName = menuAndQuantity[0];
 
             Menu menu = validateOrderItem(menuName, orderResult);
-            int itemCount = Integer.parseInt(menuAndCount[1]);
+            int itemQuantity = Integer.parseInt(menuAndQuantity[1]);
 
-            validateTotalItemCount(totalItemCount, itemCount);
+            validateTotalItemQuantity(totalItemQuantity, itemQuantity);
 
-            orderResult.put(menu, itemCount);
-            totalItemCount += itemCount;
+            orderResult.put(menu, itemQuantity);
+            totalItemQuantity += itemQuantity;
         }
 
         validateContainsNonBeverageOrder(orderResult);
@@ -105,9 +105,9 @@ public class OrderInfo {
         }
     }
 
-    private static void validateTotalItemCount(int totalItemCount, int itemCount) {
-        if (totalItemCount + itemCount > MAX_TOTAL_COUNT) {
-            throw new IllegalArgumentException(ERROR_OVER_COUNT_OF_MENU.getMessage());
+    private static void validateTotalItemQuantity(int totalItemQuantity, int itemQuantity) {
+        if (totalItemQuantity + itemQuantity > MAX_TOTAL_QUANTITY) {
+            throw new IllegalArgumentException(ERROR_OVER_QUANTITY_OF_MENU.getMessage());
         }
     }
 
