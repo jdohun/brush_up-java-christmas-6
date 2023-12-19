@@ -53,7 +53,7 @@ public class ExpectedVisitDay {
     }
 
     public int calculateDiscountAmountByDate(DateBasedDiscountStrategy dateBasedDiscountStrategy) {
-        return dateBasedDiscountStrategy.calculateDiscount(date);
+        return dateBasedDiscountStrategy.calculateDiscountAmount(date);
     }
 
     public ExpectedVisitDayDto toDto() {
