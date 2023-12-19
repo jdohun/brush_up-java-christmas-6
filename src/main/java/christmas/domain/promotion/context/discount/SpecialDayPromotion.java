@@ -1,16 +1,17 @@
 package christmas.domain.promotion.context.discount;
 
 import christmas.domain.model.classes.decemberEventPlan.DecemberEventPlan;
+import christmas.domain.promotion.enums.PromotionName;
 import christmas.domain.promotion.precondition.ChristmasPromotionPrecondition;
-import christmas.domain.promotion.strategy.dateCheckStrategy.SpecificDateCondition;
-import christmas.dto.DiscountAmount;
+import christmas.domain.promotion.strategy.dateCheckStrategy.impl.SpecificDateCondition;
+import christmas.dto.DiscountInfo;
 
 import java.util.Optional;
 
 public class SpecialDayPromotion implements ChristmasPromotionPrecondition {
+    private static final PromotionName PROMOTION_NAME = PromotionName.SPECIAL_DAY_DISCOUNT;
     private static final int SPECIAL_DISCOUNT_AMOUNT = 1_000;
     private static final SpecificDateCondition SPECIFIC_DATE_CONDITION = SpecificDateCondition.SPECIAL_DATES;
-    private static final String PROMOTION_NAME = "특별 할인";
 
     private SpecialDayPromotion() {
     }
@@ -19,16 +20,16 @@ public class SpecialDayPromotion implements ChristmasPromotionPrecondition {
         return Holder.SPECIAL_DAY_PROMOTION;
     }
 
-    public Optional<DiscountAmount> apply(DecemberEventPlan decemberEventPlan) {
+    public Optional<DiscountInfo> apply(DecemberEventPlan decemberEventPlan) {
         if (isApplicable(decemberEventPlan)) {
-            return Optional.of(new DiscountAmount(SPECIAL_DISCOUNT_AMOUNT));
+            return Optional.of(new DiscountInfo(PROMOTION_NAME, SPECIAL_DISCOUNT_AMOUNT));
         }
         return Optional.empty();
     }
 
     private boolean isApplicable(DecemberEventPlan decemberEventPlan) {
         return ChristmasPromotionPrecondition.isSatisfyingPrecondition(decemberEventPlan)
-                && SpecificDateCondition.SPECIAL_DATES.isSpecialDay(decemberEventPlan);
+                && SPECIFIC_DATE_CONDITION.isPlanSatisfyingCondition(decemberEventPlan);
     }
 
     private static class Holder {

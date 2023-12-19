@@ -1,18 +1,19 @@
 package christmas.domain.promotion.context.discount;
 
 import christmas.domain.model.classes.decemberEventPlan.DecemberEventPlan;
+import christmas.domain.promotion.enums.PromotionName;
 import christmas.domain.promotion.precondition.ChristmasPromotionPrecondition;
-import christmas.domain.promotion.strategy.dateCheckStrategy.DayOfWeekCondition;
-import christmas.domain.promotion.strategy.discountStrategy.byMenu.DiscountByDecemberEventPlan;
-import christmas.dto.DiscountAmount;
+import christmas.domain.promotion.strategy.dateCheckStrategy.impl.DayOfWeekCondition;
+import christmas.domain.promotion.strategy.discountStrategy.byDecemberEventPlan.DiscountByDecemberEventPlan;
+import christmas.dto.DiscountInfo;
 
 import java.util.Optional;
 
 public class WeekendPromotion implements ChristmasPromotionPrecondition {
+    private static final PromotionName PROMOTION_NAME = PromotionName.WEEKEND_DISCOUNT;
     public static final int WEEKEND_DISCOUNT_AMOUNT = 2_023;
     private static final DayOfWeekCondition DAY_OF_WEEK_CONDITION = DayOfWeekCondition.IS_WEEKEND;
     private static final DiscountByDecemberEventPlan DISCOUNT_BY_DECEMBER_EVENT_PLAN = DiscountByDecemberEventPlan.BY_MAIN_COUNT;
-    private static final String PROMOTION_NAME = "주말 할인";
 
     private WeekendPromotion() {
     }
@@ -21,9 +22,9 @@ public class WeekendPromotion implements ChristmasPromotionPrecondition {
         return Holder.WEEKEND_PROMOTION;
     }
 
-    public Optional<DiscountAmount> apply(DecemberEventPlan decemberEventPlan) {
+    public Optional<DiscountInfo> apply(DecemberEventPlan decemberEventPlan) {
         if (isApplicable(decemberEventPlan)) {
-            return Optional.of(calculateDiscountAmount(decemberEventPlan));
+            return Optional.of(new DiscountInfo(PROMOTION_NAME, calculateDiscountAmount(decemberEventPlan)));
         }
         return Optional.empty();
     }
@@ -33,7 +34,7 @@ public class WeekendPromotion implements ChristmasPromotionPrecondition {
                 && DAY_OF_WEEK_CONDITION.isPlanSatisfyingCondition(decemberEventPlan);
     }
 
-    private static DiscountAmount calculateDiscountAmount(DecemberEventPlan decemberEventPlan) {
+    private int calculateDiscountAmount(DecemberEventPlan decemberEventPlan) {
         return DISCOUNT_BY_DECEMBER_EVENT_PLAN.calculateDiscountAmount(decemberEventPlan);
     }
 

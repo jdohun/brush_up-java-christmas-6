@@ -1,20 +1,19 @@
 package christmas.domain.promotion.context.discount;
 
 import christmas.domain.model.classes.decemberEventPlan.DecemberEventPlan;
+import christmas.domain.promotion.enums.PromotionName;
 import christmas.domain.promotion.precondition.ChristmasPromotionPrecondition;
-import christmas.domain.promotion.strategy.dateCheckStrategy.PeriodCondition;
+import christmas.domain.promotion.strategy.dateCheckStrategy.impl.PeriodCondition;
+import christmas.domain.promotion.strategy.discountStrategy.DiscountStrategy;
 import christmas.domain.promotion.strategy.discountStrategy.byDate.DiscountByDate;
-import christmas.dto.DiscountAmount;
+import christmas.dto.DiscountInfo;
 
 import java.util.Optional;
 
 public class ChristmasDDayPromotion implements ChristmasPromotionPrecondition {
-    public static final int DEFAULT_DISCOUNT_AMOUNT = 1_000;
-    public static final int INCREASING_DISCOUNT_AMOUNT_PER_DAY = 100;
+    private static final PromotionName PROMOTION_NAME = PromotionName.CHRISTMAS_D_DAY_DISCOUNT;
     private static final PeriodCondition PERIOD_CONDITION = PeriodCondition.UNTIL_CHRISTMAS;
-    private static final DiscountByDate DISCOUNT_STRATEGY_BY_DATE = DiscountByDate.CHRISTMAS_D_DAY;
-
-    private static final String PROMOTION_NAME = "크리스마스 디데이 할인";
+    private static final DiscountStrategy DISCOUNT_STRATEGY_BY_DATE = DiscountByDate.CHRISTMAS_D_DAY;
 
     private ChristmasDDayPromotion() {
     }
@@ -23,20 +22,20 @@ public class ChristmasDDayPromotion implements ChristmasPromotionPrecondition {
         return Holder.CHRISTMAS_D_DAY_PROMOTION;
     }
 
-    public Optional<DiscountAmount> apply(DecemberEventPlan decemberEventPlan) {
+    public Optional<DiscountInfo> apply(DecemberEventPlan decemberEventPlan) {
         if (isApplicable(decemberEventPlan)) {
-            return Optional.of(calculateDiscountAmount(decemberEventPlan));
+            return Optional.of(new DiscountInfo(PROMOTION_NAME, calculateDiscountAmount(decemberEventPlan)));
         }
         return Optional.empty();
     }
 
     private boolean isApplicable(DecemberEventPlan decemberEventPlan) {
         return ChristmasPromotionPrecondition.isSatisfyingPrecondition(decemberEventPlan)
-                && PERIOD_CONDITION.isPlanWithinPeriod(decemberEventPlan);
+                && PERIOD_CONDITION.isPlanSatisfyingCondition(decemberEventPlan);
     }
 
-    private DiscountAmount calculateDiscountAmount(DecemberEventPlan decemberEventPlan) {
-        return DISCOUNT_STRATEGY_BY_DATE.applyDiscount(decemberEventPlan);
+    private int calculateDiscountAmount(DecemberEventPlan decemberEventPlan) {
+        return DISCOUNT_STRATEGY_BY_DATE.calculateDiscountAmount(decemberEventPlan);
     }
 
     private static class Holder {

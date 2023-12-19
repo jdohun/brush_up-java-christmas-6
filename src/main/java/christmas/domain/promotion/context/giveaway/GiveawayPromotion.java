@@ -2,6 +2,7 @@ package christmas.domain.promotion.context.giveaway;
 
 import christmas.domain.model.classes.decemberEventPlan.DecemberEventPlan;
 import christmas.domain.model.enums.Giveaway;
+import christmas.domain.promotion.enums.PromotionName;
 import christmas.domain.promotion.precondition.ChristmasPromotionPrecondition;
 import christmas.domain.promotion.strategy.totalAmountCheckStrategy.TotalAmountCondition;
 import christmas.dto.GiveawayAndQuantityDto;
@@ -9,8 +10,8 @@ import christmas.dto.GiveawayAndQuantityDto;
 import java.util.Optional;
 
 public class GiveawayPromotion implements ChristmasPromotionPrecondition {
+    private static final PromotionName PROMOTION_NAME = PromotionName.GIVEAWAY_EVENT;
     private static final TotalAmountCondition TOTAL_AMOUNT_CONDITION = TotalAmountCondition.GIVEAWAY_EVENT_THRESHOLD;
-    private static final String PROMOTION_NAME = "증정 이벤트";
 
     private GiveawayPromotion() {
     }
