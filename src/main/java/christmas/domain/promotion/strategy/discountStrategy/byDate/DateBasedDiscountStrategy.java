@@ -4,5 +4,5 @@ import java.time.LocalDate;
 
 @FunctionalInterface
 public interface DateBasedDiscountStrategy {
-    int calculateDiscount(LocalDate date);
+    int calculateDiscountAmount(LocalDate date);
 }
