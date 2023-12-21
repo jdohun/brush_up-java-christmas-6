@@ -1,9 +1,9 @@
-package christmas.domain.promotion.context.discount;
+package christmas.domain.promotion.context.discount.impl;
 
 import christmas.domain.model.classes.decemberEventPlan.DecemberEventPlan;
+import christmas.domain.promotion.context.discount.DiscountPromotion;
 import christmas.domain.promotion.enums.PromotionName;
 import christmas.domain.promotion.precondition.ChristmasPromotionPrecondition;
-import christmas.domain.promotion.precondition.DiscountPromotion;
 import christmas.domain.promotion.strategy.dateCheckStrategy.impl.SpecificDateCondition;
 import christmas.dto.DiscountInfo;
 
