@@ -1,10 +1,10 @@
-package christmas.domain.promotion.context.giveaway;
+package christmas.domain.promotion.context.giveaway.impl;
 
 import christmas.domain.model.classes.decemberEventPlan.DecemberEventPlan;
 import christmas.domain.model.enums.Giveaway;
+import christmas.domain.promotion.context.giveaway.GiveawayPromotion;
 import christmas.domain.promotion.enums.PromotionName;
 import christmas.domain.promotion.precondition.ChristmasPromotionPrecondition;
-import christmas.domain.promotion.precondition.GiveawayPromotion;
 import christmas.domain.promotion.strategy.totalAmountCheckStrategy.TotalAmountCondition;
 import christmas.dto.GiveawayAndQuantityDto;
 
