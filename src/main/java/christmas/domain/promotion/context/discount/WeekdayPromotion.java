@@ -3,13 +3,14 @@ package christmas.domain.promotion.context.discount;
 import christmas.domain.model.classes.decemberEventPlan.DecemberEventPlan;
 import christmas.domain.promotion.enums.PromotionName;
 import christmas.domain.promotion.precondition.ChristmasPromotionPrecondition;
+import christmas.domain.promotion.precondition.DiscountPromotion;
 import christmas.domain.promotion.strategy.dateCheckStrategy.impl.DayOfWeekCondition;
 import christmas.domain.promotion.strategy.discountStrategy.byDecemberEventPlan.DiscountByDecemberEventPlan;
 import christmas.dto.DiscountInfo;
 
 import java.util.Optional;
 
-public class WeekdayPromotion implements ChristmasPromotionPrecondition {
+public class WeekdayPromotion implements DiscountPromotion {
     private static final PromotionName PROMOTION_NAME = PromotionName.WEEKDAY_DISCOUNT;
     public static final int WEEKDAY_DISCOUNT_AMOUNT = 2_023;
     private static final DayOfWeekCondition DAY_OF_WEEK_CONDITION = DayOfWeekCondition.IS_WEEKDAY;
@@ -22,6 +23,7 @@ public class WeekdayPromotion implements ChristmasPromotionPrecondition {
         return Holder.WEEKDAY_PROMOTION;
     }
 
+    @Override
     public Optional<DiscountInfo> apply(DecemberEventPlan decemberEventPlan) {
         if (isApplicable(decemberEventPlan)) {
             return Optional.of(new DiscountInfo(PROMOTION_NAME, calculateDiscountAmount(decemberEventPlan)));
