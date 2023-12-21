@@ -4,12 +4,13 @@ import christmas.domain.model.classes.decemberEventPlan.DecemberEventPlan;
 import christmas.domain.model.enums.Giveaway;
 import christmas.domain.promotion.enums.PromotionName;
 import christmas.domain.promotion.precondition.ChristmasPromotionPrecondition;
+import christmas.domain.promotion.precondition.GiveawayPromotion;
 import christmas.domain.promotion.strategy.totalAmountCheckStrategy.TotalAmountCondition;
 import christmas.dto.GiveawayAndQuantityDto;
 
 import java.util.Optional;
 
-public class GiveawayByTotalAmountPromotion implements ChristmasPromotionPrecondition {
+public class GiveawayByTotalAmountPromotion implements GiveawayPromotion {
     private static final PromotionName PROMOTION_NAME = PromotionName.GIVEAWAY_EVENT;
     private static final TotalAmountCondition TOTAL_AMOUNT_CONDITION = TotalAmountCondition.GIVEAWAY_EVENT_THRESHOLD;
 
@@ -20,6 +21,7 @@ public class GiveawayByTotalAmountPromotion implements ChristmasPromotionPrecond
         return Holder.GIVEAWAY_PROMOTION;
     }
 
+    @Override
     public Optional<GiveawayAndQuantityDto> apply(DecemberEventPlan decemberEventPlan) {
         if (isApplicable(decemberEventPlan)) {
             return Optional.of(createGiveaway());
