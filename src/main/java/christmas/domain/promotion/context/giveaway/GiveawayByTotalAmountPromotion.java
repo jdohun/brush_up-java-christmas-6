@@ -9,14 +9,14 @@ import christmas.dto.GiveawayAndQuantityDto;
 
 import java.util.Optional;
 
-public class GiveawayPromotion implements ChristmasPromotionPrecondition {
+public class GiveawayByTotalAmountPromotion implements ChristmasPromotionPrecondition {
     private static final PromotionName PROMOTION_NAME = PromotionName.GIVEAWAY_EVENT;
     private static final TotalAmountCondition TOTAL_AMOUNT_CONDITION = TotalAmountCondition.GIVEAWAY_EVENT_THRESHOLD;
 
-    private GiveawayPromotion() {
+    private GiveawayByTotalAmountPromotion() {
     }
 
-    public static GiveawayPromotion getInstance() {
+    public static GiveawayByTotalAmountPromotion getInstance() {
         return Holder.GIVEAWAY_PROMOTION;
     }
 
@@ -37,6 +37,6 @@ public class GiveawayPromotion implements ChristmasPromotionPrecondition {
     }
 
     private static class Holder{
-        private static final GiveawayPromotion GIVEAWAY_PROMOTION = new GiveawayPromotion();
+        private static final GiveawayByTotalAmountPromotion GIVEAWAY_PROMOTION = new GiveawayByTotalAmountPromotion();
     }
 }
