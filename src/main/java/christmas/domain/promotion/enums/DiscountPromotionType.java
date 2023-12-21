@@ -25,7 +25,7 @@ public enum DiscountPromotionType {
         this.promotion = promotion;
     }
 
-    public List<DiscountInfo> applyPromotionTypes(DecemberEventPlan decemberEventPlan) {
+    public static List<DiscountInfo> applyPromotionTypes(DecemberEventPlan decemberEventPlan) {
         List<DiscountInfo> discountInfoList = new ArrayList<>();
 
         for (DiscountPromotionType discountPromotionType : DISCOUNT_PROMOTION_TYPES) {
