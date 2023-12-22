@@ -6,7 +6,7 @@ import christmas.domain.promotion.context.giveaway.GiveawayPromotion;
 import christmas.domain.promotion.enums.PromotionName;
 import christmas.domain.promotion.precondition.ChristmasPromotionPrecondition;
 import christmas.domain.promotion.strategy.totalAmountCheckStrategy.TotalAmountCondition;
-import christmas.dto.GiveawayAndQuantityDto;
+import christmas.dto.GiveawayInfo;
 
 import java.util.Optional;
 
@@ -22,7 +22,7 @@ public class GiveawayByTotalAmountPromotion implements GiveawayPromotion {
     }
 
     @Override
-    public Optional<GiveawayAndQuantityDto> apply(DecemberEventPlan decemberEventPlan) {
+    public Optional<GiveawayInfo> apply(DecemberEventPlan decemberEventPlan) {
         if (isApplicable(decemberEventPlan)) {
             return Optional.of(createGiveaway());
         }
@@ -34,8 +34,8 @@ public class GiveawayByTotalAmountPromotion implements GiveawayPromotion {
                 && TOTAL_AMOUNT_CONDITION.isTotalAmountSufficient(decemberEventPlan.getTotalAmountBeforeDiscount());
     }
 
-    private GiveawayAndQuantityDto createGiveaway() {
-        return new GiveawayAndQuantityDto(Giveaway.GIVEAWAY_CHAMPAGNE, 1);
+    private GiveawayInfo createGiveaway() {
+        return new GiveawayInfo(PROMOTION_NAME, Giveaway.GIVEAWAY_CHAMPAGNE, 1);
     }
 
     private static class Holder{
