@@ -3,7 +3,7 @@ package christmas.domain.promotion.enums;
 import christmas.domain.model.classes.decemberEventPlan.DecemberEventPlan;
 import christmas.domain.promotion.context.giveaway.GiveawayPromotion;
 import christmas.domain.promotion.context.giveaway.impl.GiveawayByTotalAmountPromotion;
-import christmas.dto.GiveawayAndQuantityDto;
+import christmas.dto.GiveawayInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,15 +19,15 @@ public enum GiveawayPromotionType {
         this.promotion = promotion;
     }
 
-    public static List<GiveawayAndQuantityDto> applyPromotionTypes(DecemberEventPlan decemberEventPlan) {
-        List<GiveawayAndQuantityDto> giveawayAndQuantityDtoList = new ArrayList<>();
+    public static List<GiveawayInfo> applyPromotionTypes(DecemberEventPlan decemberEventPlan) {
+        List<GiveawayInfo> giveawayInfos = new ArrayList<>();
 
         for (GiveawayPromotionType giveawayPromotionType : GIVEAWAY_PROMOTION_TYPES) {
-            Optional<GiveawayAndQuantityDto> optionalGiveawayAndQuantityDto = giveawayPromotionType.promotion.apply(decemberEventPlan);
+            Optional<GiveawayInfo> optionalGiveawayAndQuantityDto = giveawayPromotionType.promotion.apply(decemberEventPlan);
 
-            optionalGiveawayAndQuantityDto.ifPresent(giveawayAndQuantityDtoList::add);
+            optionalGiveawayAndQuantityDto.ifPresent(giveawayInfos::add);
         }
 
-        return giveawayAndQuantityDtoList;
+        return giveawayInfos;
     }
 }
