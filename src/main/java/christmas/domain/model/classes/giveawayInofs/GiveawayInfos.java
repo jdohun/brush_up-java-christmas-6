@@ -5,11 +5,11 @@ import christmas.dto.TotalGiveawayAmount;
 
 import java.util.List;
 
-public record GiveawayInfos(List<GiveawayInfo> giveawayInfos) {
+public record GiveawayInfos(List<GiveawayInfo> giveawayInfoList) {
     public TotalGiveawayAmount calculateTotalGiveawayAmount() {
-        if (giveawayInfos.isEmpty()){
+        if (giveawayInfoList.isEmpty()) {
             return new TotalGiveawayAmount(0);
         }
-        return TotalGiveawayAmount.from(giveawayInfos);
+        return TotalGiveawayAmount.from(giveawayInfoList);
     }
 }
