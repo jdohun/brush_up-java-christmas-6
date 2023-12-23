@@ -1,5 +1,7 @@
 package christmas.domain.model.enums;
 
+import christmas.dto.TotalBenefitAmount;
+
 import java.util.Arrays;
 
 public enum Badge {
@@ -20,9 +22,9 @@ public enum Badge {
         this.maxPrice = maxPrice;
     }
 
-    public static Badge getByTotalBenefitAmount(int totalBenefitAmount){
+    public static Badge getByTotalBenefitAmount(TotalBenefitAmount totalBenefitAmount){
         return Arrays.stream(badges)
-                .filter(badge -> badge.isWithinPriceRange(totalBenefitAmount))
+                .filter(badge -> badge.isWithinPriceRange(totalBenefitAmount.amount()))
                 .findFirst()
                 .orElse(NONE);
     }
