@@ -6,6 +6,6 @@ import christmas.domain.promotion.enums.PromotionName;
 public record GiveawayInfo(
         PromotionName promotionName,
         Giveaway giveaway,
-        Integer quantity
+        int quantity
 ) {
 }
