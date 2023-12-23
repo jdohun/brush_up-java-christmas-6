@@ -1,13 +1,15 @@
 package christmas.domain.promotion.enums;
 
 import christmas.domain.model.classes.decemberEventPlan.DecemberEventPlan;
+import christmas.domain.model.classes.giveawayInofs.GiveawayInfos;
 import christmas.domain.promotion.context.giveaway.GiveawayPromotion;
 import christmas.domain.promotion.context.giveaway.impl.GiveawayByTotalAmountPromotion;
 import christmas.dto.GiveawayInfo;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public enum GiveawayPromotionType {
     GIVEAWAY(GiveawayByTotalAmountPromotion.getInstance());
@@ -19,15 +21,25 @@ public enum GiveawayPromotionType {
         this.promotion = promotion;
     }
 
-    public static List<GiveawayInfo> applyPromotionTypes(DecemberEventPlan decemberEventPlan) {
-        List<GiveawayInfo> giveawayInfos = new ArrayList<>();
+    public static GiveawayInfos applyPromotionTypes(DecemberEventPlan decemberEventPlan) {
+        final List<Optional<GiveawayInfo>> appliedGiveawayResults = Arrays.stream(GIVEAWAY_PROMOTION_TYPES)
+                .map(giveawayPromotionType -> giveawayPromotionType.promotion.apply(decemberEventPlan))
+                .collect(Collectors.toList());
 
-        for (GiveawayPromotionType giveawayPromotionType : GIVEAWAY_PROMOTION_TYPES) {
-            Optional<GiveawayInfo> optionalGiveawayAndQuantityDto = giveawayPromotionType.promotion.apply(decemberEventPlan);
+        final List<GiveawayInfo> giveawayInfoList = collectValidGiveawayInfoList(appliedGiveawayResults);
 
-            optionalGiveawayAndQuantityDto.ifPresent(giveawayInfos::add);
-        }
-
-        return giveawayInfos;
+        return createGiveawayInfos(giveawayInfoList);
     }
+
+    private static List<GiveawayInfo> collectValidGiveawayInfoList(List<Optional<GiveawayInfo>> appliedGiveawayResults) {
+        return appliedGiveawayResults.stream()
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .collect(Collectors.toList());
+    }
+
+    private static GiveawayInfos createGiveawayInfos(List<GiveawayInfo> giveawayInfoList) {
+        return new GiveawayInfos(giveawayInfoList);
+    }
+
 }
