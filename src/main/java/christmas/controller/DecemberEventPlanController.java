@@ -43,7 +43,7 @@ public class DecemberEventPlanController {
             try {
                 return action.get();
             } catch (IllegalArgumentException illegalArgumentException) {
-                ERROR_VIEW.showError(illegalArgumentException);
+                ERROR_VIEW.showErrorMessage(illegalArgumentException);
             } finally {
                 OUTPUT_VIEW.separateLine();
             }
