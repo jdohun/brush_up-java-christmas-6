@@ -12,4 +12,8 @@ public enum PromotionName {
     PromotionName(String eventName) {
         this.eventName = eventName;
     }
+
+    public String getEventName() {
+        return eventName;
+    }
 }
