@@ -12,6 +12,8 @@ import christmas.dto.TotalDiscountAmount;
 import christmas.dto.TotalGiveawayAmount;
 import christmas.view.outputView.preview.Preview;
 
+import java.util.Optional;
+
 public class ChristmasPromotionController {
     private static final Preview PREVIEW = Preview.getInstance();
 
@@ -34,7 +36,7 @@ public class ChristmasPromotionController {
         final TotalDiscountAmount totalDiscountAmount = discountInfos.calculateTotalDiscountAmount();
         final TotalGiveawayAmount totalGiveawayAmount = giveawayInfos.calculateTotalGiveawayAmount();
         final TotalBenefitAmount totalBenefitAmount = TotalBenefitAmount.of(totalDiscountAmount, totalGiveawayAmount);
-        final Badge badge = Badge.getByTotalBenefitAmount(totalBenefitAmount);
+        final Optional<Badge> optionalBadge = Badge.getByTotalBenefitAmount(totalBenefitAmount);
 
         return ChristmasPromotionPreview.builder()
                 .expectedVisitDay(decemberEventPlan.getExpectedVisitDayDto())
@@ -45,7 +47,7 @@ public class ChristmasPromotionController {
                 .totalGiveawayAmount(totalGiveawayAmount)
                 .totalDiscountAmount(totalDiscountAmount)
                 .totalBenefitAmount(totalBenefitAmount)
-                .badge(badge)
+                .optionalBadge(optionalBadge)
                 .build();
     }
 }
