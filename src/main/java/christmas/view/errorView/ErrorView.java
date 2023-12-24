@@ -10,7 +10,7 @@ public class ErrorView {
         return Holder.ERROR_VIEW;
     }
 
-    public void showError(IllegalArgumentException illegalArgumentException) {
+    public void showErrorMessage(IllegalArgumentException illegalArgumentException) {
         System.out.println(ERROR_MESSAGE_PREFIX + illegalArgumentException.getMessage());
     }
 
