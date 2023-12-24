@@ -1,7 +1,5 @@
 package christmas.domain.model.classes.orderInfo;
 
-import static christmas.util.ErrorMessagePrefix.ERROR_MESSAGE_PREFIX;
-
 public enum OrderInfoErrorMessage {
     /**
      * 메뉴판에 없는 메뉴를 입력하는 경우
@@ -16,7 +14,7 @@ public enum OrderInfoErrorMessage {
     private final String message;
 
     OrderInfoErrorMessage(String message) {
-        this.message = ERROR_MESSAGE_PREFIX.getErrorMessagePrefix() + message;
+        this.message = message;
     }
 
     public String getMessage() {
