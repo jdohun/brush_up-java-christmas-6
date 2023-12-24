@@ -1,7 +1,5 @@
 package christmas.domain.model.classes.expectedVisitDay;
 
-import static christmas.util.ErrorMessagePrefix.ERROR_MESSAGE_PREFIX;
-
 public enum ExpectedVisitDayErrorMessage {
     /**
      * 방문할 날짜에 숫자가 입력되지 않은 경우
@@ -12,7 +10,7 @@ public enum ExpectedVisitDayErrorMessage {
     private final String message;
 
     ExpectedVisitDayErrorMessage(String message) {
-        this.message = ERROR_MESSAGE_PREFIX.getErrorMessagePrefix() + message;
+        this.message = message;
     }
 
     public String getMessage() {
