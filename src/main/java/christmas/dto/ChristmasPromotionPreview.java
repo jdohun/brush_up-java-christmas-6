@@ -5,6 +5,7 @@ import christmas.domain.model.classes.giveawayInofs.GiveawayInfos;
 import christmas.domain.model.enums.Badge;
 
 import java.util.List;
+import java.util.Optional;
 
 public record ChristmasPromotionPreview(
         ExpectedVisitDayDto expectedVisitDay,
@@ -15,7 +16,7 @@ public record ChristmasPromotionPreview(
         TotalGiveawayAmount totalGiveawayAmount,
         TotalDiscountAmount totalDiscountAmount,
         TotalBenefitAmount totalBenefitAmount,
-        Badge badge
+        Optional<Badge> optionalBadge
 ) {
     public static Builder builder(){
         return new Builder();
@@ -30,7 +31,7 @@ public record ChristmasPromotionPreview(
         TotalGiveawayAmount totalGiveawayAmount;
         TotalDiscountAmount totalDiscountAmount;
         TotalBenefitAmount totalBenefitAmount;
-        Badge badge;
+        Optional<Badge> optionalBadge;
         private Builder() {
         }
 
@@ -74,8 +75,8 @@ public record ChristmasPromotionPreview(
             return this;
         }
 
-        public Builder badge(Badge badge) {
-            this.badge = badge;
+        public Builder optionalBadge(Optional<Badge> optionalBadge) {
+            this.optionalBadge = optionalBadge;
             return this;
         }
 
@@ -89,7 +90,7 @@ public record ChristmasPromotionPreview(
                     totalGiveawayAmount,
                     totalDiscountAmount,
                     totalBenefitAmount,
-                    badge
+                    optionalBadge
             );
         }
     }
