@@ -5,7 +5,7 @@ enum PreviewMessage {
 
     MENU_FORMAT("%s %d개"),
     MONEY_FORMAT("%,d원"),
-    BENEFIT_MONEY_FORMAT("-%,d원"),
+    NEGATIVE_MONEY_FORMAT("-%,d원"),
     BENEFIT_DETAILS_FORMAT("%s: -%,d원"),
 
     ORDER_MENU_TITLE("<주문 메뉴>"),
