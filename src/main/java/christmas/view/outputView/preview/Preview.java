@@ -44,11 +44,13 @@ public final class Preview {
                                 menuAndQuantityDto.menu().getName(),
                                 menuAndQuantityDto.quantity()
                         )));
+        separateLine();
     }
 
     private void printTotalAmountBeforeDiscount(TotalAmount totalAmount) {
         System.out.println(TOTAL_PRICE_BEFORE_DISCOUNT_TITLE.getMessage());
         System.out.println(String.format(MONEY_FORMAT.getMessage(), totalAmount.amount()));
+        separateLine();
     }
 
     private void printGiveawayInfos(GiveawayInfos giveawayInfos) {
@@ -67,6 +69,7 @@ public final class Preview {
         if (giveawayInfoList.isEmpty()) {
             System.out.println(NONE.getMessage());
         }
+        separateLine();
     }
 
     private void printBenefitInfo(GiveawayInfos giveawayInfos, DiscountInfos discountInfos) {
@@ -79,37 +82,45 @@ public final class Preview {
         if (!discountInfoList.isEmpty()) {
             discountInfoList.forEach(
                     discountInfo -> System.out.println(
-                            String.format(benefitDetailsFormat, discountInfo.promotionName(), discountInfo.discountAmount())
+                            String.format(benefitDetailsFormat, discountInfo.promotionName().getEventName(), discountInfo.discountAmount())
                     ));
         }
 
         if (!giveawayInfoList.isEmpty()) {
             giveawayInfoList.forEach(
                     giveawayInfo -> System.out.println(
-                            String.format(benefitDetailsFormat, giveawayInfo.promotionName(), giveawayInfo.calculateGiveawayAmount())
+                            String.format(benefitDetailsFormat, giveawayInfo.promotionName().getEventName(), giveawayInfo.calculateGiveawayAmount())
                     ));
         }
 
         if (discountInfoList.isEmpty() && giveawayInfoList.isEmpty()) {
             System.out.println(NONE.getMessage());
         }
+        separateLine();
     }
 
     private void printTotalBenefitAmount(TotalBenefitAmount totalBenefitAmount) {
-        final String benefitMoneyFormat = BENEFIT_MONEY_FORMAT.getMessage();
+        final String moneyFormat = (totalBenefitAmount.amount() > 0) ? NEGATIVE_MONEY_FORMAT.getMessage() : MONEY_FORMAT.getMessage();
 
         System.out.println(TOTAL_BENEFIT_AMOUNT_TITLE.getMessage());
-        System.out.println(String.format(benefitMoneyFormat, totalBenefitAmount.amount()));
+        System.out.println(String.format(moneyFormat, totalBenefitAmount.amount()));
+        separateLine();
     }
 
     private void printTotalAmountAfterDiscount(TotalAmount totalAmount, TotalDiscountAmount totalDiscountAmount) {
         System.out.println(ESTIMATED_PAYMENT_AMOUNT_AFTER_DISCOUNT_TITLE.getMessage());
         System.out.println(String.format(MONEY_FORMAT.getMessage(), totalAmount.amount() - totalDiscountAmount.amount()));
+        separateLine();
     }
 
     private void printOptionalBadge(Optional<Badge> optionalBadge) {
         System.out.println(DECEMBER_EVENT_BADGE_TITLE.getMessage());
         System.out.println(optionalBadge.map(Badge::getName).orElse(NONE.getMessage()));
+        separateLine();
+    }
+
+    private void separateLine() {
+        System.out.println();
     }
 
     private class Holder {
