@@ -8,4 +8,7 @@ public record GiveawayInfo(
         Giveaway giveaway,
         int quantity
 ) {
+    public int calculateGiveawayAmount() {
+        return giveaway.getPrice() * quantity;
+    }
 }
