@@ -1,12 +1,12 @@
 package christmas.view.errorView;
 
-public class ErrorView {
+public class CustomErrorView {
     private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
 
-    private ErrorView() {
+    private CustomErrorView() {
     }
 
-    public static ErrorView getInstance() {
+    public static CustomErrorView getInstance() {
         return Holder.ERROR_VIEW;
     }
 
@@ -15,6 +15,6 @@ public class ErrorView {
     }
 
     private class Holder {
-        private static final ErrorView ERROR_VIEW = new ErrorView();
+        private static final CustomErrorView ERROR_VIEW = new CustomErrorView();
     }
 }
