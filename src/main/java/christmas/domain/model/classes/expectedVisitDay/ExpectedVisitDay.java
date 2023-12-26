@@ -5,8 +5,6 @@ import christmas.domain.promotion.strategy.discountStrategy.byDate.DateBasedDisc
 import christmas.dto.ExpectedVisitDayDto;
 
 import java.time.LocalDate;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import static christmas.domain.model.classes.expectedVisitDay.ExpectedVisitDayErrorMessage.ERROR_INVALID_EXPECTED_DAY;
 
@@ -16,18 +14,15 @@ public class ExpectedVisitDay {
     private static final int START_OF_RANGE = 1;
     private static final int END_OF_RANGE = 31;
 
-    private static final Pattern EXPECTED_VISIT_DAY_PATTERN = Pattern.compile("^\\d+$");
-
     private final LocalDate date;
 
     private ExpectedVisitDay(LocalDate date) {
         this.date = date;
     }
 
-    public static ExpectedVisitDay from(String inputExpectedVisitDay) {
-        int expectedVisitDay = parseExpectedVisitDay(inputExpectedVisitDay);
-        validate(expectedVisitDay);
-        return new ExpectedVisitDay(LocalDate.of(YEAR, MONTH, expectedVisitDay));
+    public static ExpectedVisitDay from(int dayOfMonth) {
+        validate(dayOfMonth);
+        return new ExpectedVisitDay(LocalDate.of(YEAR, MONTH, dayOfMonth));
     }
 
     private static void validate(int expectedVisitDay) {
@@ -38,14 +33,6 @@ public class ExpectedVisitDay {
         if (expectedVisitDay < START_OF_RANGE || expectedVisitDay > END_OF_RANGE) {
             throw new IllegalArgumentException(ERROR_INVALID_EXPECTED_DAY.getMessage());
         }
-    }
-
-    private static int parseExpectedVisitDay(String inputExpectedVisitDay) {
-        Matcher matcher = EXPECTED_VISIT_DAY_PATTERN.matcher(inputExpectedVisitDay);
-        if (!matcher.matches()) {
-            throw new IllegalArgumentException(ERROR_INVALID_EXPECTED_DAY.getMessage());
-        }
-        return Integer.parseInt(inputExpectedVisitDay);
     }
 
     public boolean isSatisfyingCondition(DateCheckStrategy dateCheckStrategy) {
