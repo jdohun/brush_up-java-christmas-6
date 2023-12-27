@@ -1,11 +1,11 @@
-package christmas.handler;
+package christmas.parser;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static christmas.domain.model.classes.expectedVisitDay.ExpectedVisitDayErrorMessage.ERROR_INVALID_EXPECTED_DAY;
 
-public final class InputDayOfMonthHandler {
+public final class InputDayOfMonthParser {
     private static final Pattern EXPECTED_VISIT_DAY_PATTERN = Pattern.compile("^\\d{1,2}$");
 
     public static int parseDayOfMonth(String inputDayOfMonth) {

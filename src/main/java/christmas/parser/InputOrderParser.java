@@ -1,4 +1,4 @@
-package christmas.handler;
+package christmas.parser;
 
 import christmas.domain.model.enums.menu.Menu;
 
@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 import static christmas.domain.model.classes.orderInfo.OrderInfoErrorMessage.ERROR_INVALID_ORDER;
 
-public final class InputOrderHandler {
+public final class InputOrderParser {
     private static final String ORDER_ITEM_DELIMITER = ",";
     private static final String ITEM_QUANTITY_DELIMITER = "-";
 
@@ -27,10 +27,10 @@ public final class InputOrderHandler {
         return validatedOrderItems.stream()
                 .map(splitOrderItem())
                 .collect(Collectors.toMap(
-                        InputOrderHandler::extractMenuToKey,
-                        InputOrderHandler::extractQuantityToValue,
-                        InputOrderHandler::validateDuplicate,
-                        InputOrderHandler::createEnumMap
+                        InputOrderParser::extractMenuToKey,
+                        InputOrderParser::extractQuantityToValue,
+                        InputOrderParser::validateDuplicate,
+                        InputOrderParser::createEnumMap
                 ));
     }
 
