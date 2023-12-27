@@ -4,16 +4,20 @@ import camp.nextstep.edu.missionutils.Console;
 import christmas.domain.model.classes.decemberEventPlan.DecemberEventPlan;
 import christmas.domain.model.classes.expectedVisitDay.ExpectedVisitDay;
 import christmas.domain.model.classes.orderInfo.OrderInfo;
-import christmas.view.errorView.ErrorView;
+import christmas.domain.model.enums.menu.Menu;
+import christmas.parser.InputDayOfMonthParser;
+import christmas.parser.InputOrderParser;
+import christmas.view.errorView.CustomErrorView;
 import christmas.view.inputView.InputView;
 import christmas.view.outputView.OutputView;
 
+import java.util.EnumMap;
 import java.util.function.Supplier;
 
 public class DecemberEventPlanController {
     private static final InputView INPUT_VIEW = InputView.getInstance();
     private static final OutputView OUTPUT_VIEW = OutputView.getInstance();
-    private static final ErrorView ERROR_VIEW = ErrorView.getInstance();
+    private static final CustomErrorView ERROR_VIEW = CustomErrorView.getInstance();
 
     public DecemberEventPlan run() {
         try {
@@ -24,12 +28,20 @@ public class DecemberEventPlanController {
         }
     }
 
+    private int inputDayOfMonth() {
+        return InputDayOfMonthParser.parseDayOfMonth(INPUT_VIEW.inputExpectedVisitDay());
+    }
+
     private ExpectedVisitDay inputExpectedVisitDay() {
-        return ExpectedVisitDay.from(INPUT_VIEW.inputExpectedVisitDay());
+        return ExpectedVisitDay.from(inputDayOfMonth());
     }
 
     private OrderInfo inputOrderInfo() {
-        return OrderInfo.from(INPUT_VIEW.inputOrderInfo());
+        return OrderInfo.from(parseInputOrderInfo());
+    }
+
+    private EnumMap<Menu, Integer> parseInputOrderInfo() {
+        return InputOrderParser.parseOrderInfo(INPUT_VIEW.inputOrderInfo());
     }
 
     private DecemberEventPlan inputDecemberEventPlan() {
