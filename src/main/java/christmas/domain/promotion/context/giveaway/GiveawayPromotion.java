@@ -1,7 +1,7 @@
 package christmas.domain.promotion.context.giveaway;
 
 import christmas.domain.model.classes.decemberEventPlan.DecemberEventPlan;
-import christmas.domain.promotion.precondition.ChristmasPromotionPrecondition;
+import christmas.domain.promotion.context.ChristmasPromotionPrecondition;
 import christmas.dto.GiveawayInfo;
 
 import java.util.Optional;
