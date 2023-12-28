@@ -1,4 +1,4 @@
-package christmas.domain.promotion.precondition;
+package christmas.domain.promotion.context;
 
 import christmas.domain.model.classes.decemberEventPlan.DecemberEventPlan;
 import christmas.domain.promotion.strategy.dateCheckStrategy.impl.PeriodCondition;

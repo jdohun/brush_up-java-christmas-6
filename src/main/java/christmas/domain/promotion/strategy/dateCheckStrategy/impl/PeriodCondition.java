@@ -4,8 +4,8 @@ import christmas.domain.model.classes.decemberEventPlan.DecemberEventPlan;
 
 import java.time.LocalDate;
 
-import static christmas.domain.promotion.precondition.ChristmasPromotionPrecondition.EVENT_MONTH;
-import static christmas.domain.promotion.precondition.ChristmasPromotionPrecondition.EVENT_YEAR;
+import static christmas.domain.promotion.context.ChristmasPromotionPrecondition.EVENT_MONTH;
+import static christmas.domain.promotion.context.ChristmasPromotionPrecondition.EVENT_YEAR;
 
 public enum PeriodCondition implements DecemberEventPlanConditionChecker {
      UNTIL_CHRISTMAS(

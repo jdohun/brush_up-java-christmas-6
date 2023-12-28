@@ -3,7 +3,7 @@ package christmas.domain.promotion.context.discount.impl;
 import christmas.domain.model.classes.decemberEventPlan.DecemberEventPlan;
 import christmas.domain.promotion.context.discount.DiscountPromotion;
 import christmas.domain.promotion.enums.PromotionName;
-import christmas.domain.promotion.precondition.ChristmasPromotionPrecondition;
+import christmas.domain.promotion.context.ChristmasPromotionPrecondition;
 import christmas.domain.promotion.strategy.dateCheckStrategy.impl.PeriodCondition;
 import christmas.domain.promotion.strategy.discountStrategy.DiscountStrategy;
 import christmas.domain.promotion.strategy.discountStrategy.byDate.DiscountByDate;
