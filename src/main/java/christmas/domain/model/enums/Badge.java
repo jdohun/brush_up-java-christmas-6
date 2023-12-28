@@ -23,8 +23,9 @@ public enum Badge {
     }
 
     public static Optional<Badge> getByTotalBenefitAmount(TotalBenefitAmount totalBenefitAmount){
+        final int amount = totalBenefitAmount.amount();
         return Arrays.stream(badges)
-                .filter(badge -> badge.isWithinPriceRange(totalBenefitAmount.amount()))
+                .filter(badge -> badge.isWithinPriceRange(amount))
                 .findFirst()
                 .map(Optional::of)
                 .orElseGet(Optional::empty);
