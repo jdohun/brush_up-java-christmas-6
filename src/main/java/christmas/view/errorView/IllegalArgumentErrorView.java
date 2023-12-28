@@ -1,13 +1,13 @@
 package christmas.view.errorView;
 
-public class CustomErrorView {
+public final class IllegalArgumentErrorView {
     private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
 
-    private CustomErrorView() {
+    private IllegalArgumentErrorView() {
     }
 
-    public static CustomErrorView getInstance() {
-        return Holder.ERROR_VIEW;
+    public static IllegalArgumentErrorView getInstance() {
+        return Holder.ILLEGAL_ARGUMENT_ERROR_VIEW;
     }
 
     public void showErrorMessage(IllegalArgumentException illegalArgumentException) {
@@ -15,6 +15,6 @@ public class CustomErrorView {
     }
 
     private class Holder {
-        private static final CustomErrorView ERROR_VIEW = new CustomErrorView();
+        private static final IllegalArgumentErrorView ILLEGAL_ARGUMENT_ERROR_VIEW = new IllegalArgumentErrorView();
     }
 }

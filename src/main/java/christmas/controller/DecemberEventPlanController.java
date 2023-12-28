@@ -7,7 +7,7 @@ import christmas.domain.model.classes.orderInfo.OrderInfo;
 import christmas.domain.model.enums.menu.Menu;
 import christmas.parser.InputDayOfMonthParser;
 import christmas.parser.InputOrderParser;
-import christmas.view.errorView.CustomErrorView;
+import christmas.view.errorView.IllegalArgumentErrorView;
 import christmas.view.inputView.InputView;
 import christmas.view.outputView.OutputView;
 
@@ -17,7 +17,7 @@ import java.util.function.Supplier;
 public class DecemberEventPlanController {
     private static final InputView INPUT_VIEW = InputView.getInstance();
     private static final OutputView OUTPUT_VIEW = OutputView.getInstance();
-    private static final CustomErrorView ERROR_VIEW = CustomErrorView.getInstance();
+    private static final IllegalArgumentErrorView ILLEGAL_ARGUMENT_ERROR_VIEW = IllegalArgumentErrorView.getInstance();
 
     public DecemberEventPlan run() {
         try {
@@ -55,7 +55,7 @@ public class DecemberEventPlanController {
             try {
                 return action.get();
             } catch (IllegalArgumentException illegalArgumentException) {
-                ERROR_VIEW.showErrorMessage(illegalArgumentException);
+                ILLEGAL_ARGUMENT_ERROR_VIEW.showErrorMessage(illegalArgumentException);
             } finally {
                 OUTPUT_VIEW.separateLine();
             }
