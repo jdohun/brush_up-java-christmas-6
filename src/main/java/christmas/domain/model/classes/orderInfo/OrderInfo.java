@@ -40,7 +40,7 @@ public class OrderInfo {
         }
     }
 
-    public static void validateContainsNonBeverageOrder(EnumMap<Menu, Integer> orderInfo) {
+    private static void validateContainsNonBeverageOrder(EnumMap<Menu, Integer> orderInfo) {
         boolean containsNonBeverage = orderInfo.keySet().stream()
                 .anyMatch(menu -> !menu.isBeverage());
 
