@@ -30,8 +30,17 @@ class InputOrderParserTest {
     @DisplayName("[Exception] '한글-1 이상의 정수'의 주문 형식을 지키더라도 메뉴가 존재하지 않으면 예외를 발생시킨다.")
     @ParameterizedTest
     @ValueSource(strings = {"한글-1", "메뉴-2", "음식-123"})
-    void parseOrderInfoByInvalidMenu(String invalidMenu) {
-        assertThatThrownBy(() -> InputOrderParser.parseOrderInfo(invalidMenu))
+    void parseOrderInfoByNonExistentMenu(String nonExistentMenu) {
+        assertThatThrownBy(() -> InputOrderParser.parseOrderInfo(nonExistentMenu))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("유효하지 않은 주문입니다. 다시 입력해 주세요.");
+    }
+
+    @DisplayName("[Exception] 1 보다 적은 개수로 주문하면 예외를 발생시킨다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"양송이수프-0", "타파스--1", "양송이수프--2"})
+    void parseOrderInfoByLessQuantityLimit(String lessQuantityLimit) {
+        assertThatThrownBy(() -> InputOrderParser.parseOrderInfo(lessQuantityLimit))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
