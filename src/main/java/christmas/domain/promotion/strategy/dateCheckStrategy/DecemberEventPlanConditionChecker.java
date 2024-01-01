@@ -1,4 +1,4 @@
-package christmas.domain.promotion.strategy.dateCheckStrategy.impl;
+package christmas.domain.promotion.strategy.dateCheckStrategy;
 
 import christmas.domain.model.classes.decemberEventPlan.DecemberEventPlan;
 
