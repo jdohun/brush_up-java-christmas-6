@@ -36,18 +36,10 @@ class PeriodConditionTest {
     void testPeriodConditionByDecember() {
         // arrange & act & assert
         TestUtil.testCondition(
-                DecemberEventPlanFixtureByDay.UNTIL_CHRISTMAS.getPlans(),
+                DecemberEventPlanFixtureByDay.MONTHLY_DECEMBER.getPlans(),
                 decemberEventPlan -> PeriodCondition.MONTHLY_DECEMBER.isPlanSatisfyingCondition(decemberEventPlan),
                 true,
-                "1~25일은 크리스마스 프로모션 기간 전제 조건을 만족합니다 : true"
-        );
-
-        // arrange & act & assert
-        TestUtil.testCondition(
-                DecemberEventPlanFixtureByDay.AFTER_CHRISTMAS.getPlans(),
-                decemberEventPlan -> PeriodCondition.MONTHLY_DECEMBER.isPlanSatisfyingCondition(decemberEventPlan),
-                true,
-                "26~31일은 프로모션 기간 전제 조건을 만족합니다 : true"
+                "1~31일은 크리스마스 프로모션 기간 전제 조건을 만족합니다 : true"
         );
     }
 }

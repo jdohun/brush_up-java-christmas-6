@@ -17,7 +17,7 @@ class DiscountByDateTest {
     @Test
     void calculateDiscountAmount() {
         // arrange
-        final List<DecemberEventPlan> plans = DecemberEventPlanFixtureByDay.UNTIL_CHRISTMAS.getPlans();
+        final List<DecemberEventPlan> plans = DecemberEventPlanFixtureByDay.MONTHLY_DECEMBER.getPlans();
 
         final int initialAmount = 1000;
         final int increment = 100;
