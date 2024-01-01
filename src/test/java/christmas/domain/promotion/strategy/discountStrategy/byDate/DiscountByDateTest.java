@@ -1,7 +1,7 @@
 package christmas.domain.promotion.strategy.discountStrategy.byDate;
 
 import christmas.domain.model.classes.decemberEventPlan.DecemberEventPlan;
-import christmas.fixture.DecemberEventPlanFixture;
+import christmas.fixture.DecemberEventPlanFixtureByDay;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +17,7 @@ class DiscountByDateTest {
     @Test
     void calculateDiscountAmount() {
         // arrange
-        final List<DecemberEventPlan> plans = DecemberEventPlanFixture.UNTIL_CHRISTMAS.getPlans();
+        final List<DecemberEventPlan> plans = DecemberEventPlanFixtureByDay.UNTIL_CHRISTMAS.getPlans();
 
         final int initialAmount = 1000;
         final int increment = 100;

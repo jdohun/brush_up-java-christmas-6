@@ -1,6 +1,6 @@
 package christmas.domain.promotion.strategy.dateCheckStrategy.impl;
 
-import christmas.fixture.DecemberEventPlanFixture;
+import christmas.fixture.DecemberEventPlanFixtureByDay;
 import christmas.testUtil.TestUtil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,7 @@ class PeriodConditionTest {
     void testPeriodConditionByUntilChristmas() {
         // arrange & act & assert
         TestUtil.testCondition(
-                DecemberEventPlanFixture.UNTIL_CHRISTMAS.getPlans(),
+                DecemberEventPlanFixtureByDay.UNTIL_CHRISTMAS.getPlans(),
                 decemberEventPlan -> PeriodCondition.UNTIL_CHRISTMAS.isPlanSatisfyingCondition(decemberEventPlan),
                 true,
                 "1~25일은 크리스마스 프로모션 기간 조건을 만족합니다 : true"
@@ -24,7 +24,7 @@ class PeriodConditionTest {
     void testPeriodConditionByAfterChristmas() {
         // arrange & act & assert
         TestUtil.testCondition(
-                DecemberEventPlanFixture.AFTER_CHRISTMAS.getPlans(),
+                DecemberEventPlanFixtureByDay.AFTER_CHRISTMAS.getPlans(),
                 decemberEventPlan -> PeriodCondition.UNTIL_CHRISTMAS.isPlanSatisfyingCondition(decemberEventPlan),
                 false,
                 "26~31일은 크리스마스 프로모션 기간 조건을 만족합니다 : false"
@@ -36,7 +36,7 @@ class PeriodConditionTest {
     void testPeriodConditionByDecember() {
         // arrange & act & assert
         TestUtil.testCondition(
-                DecemberEventPlanFixture.UNTIL_CHRISTMAS.getPlans(),
+                DecemberEventPlanFixtureByDay.UNTIL_CHRISTMAS.getPlans(),
                 decemberEventPlan -> PeriodCondition.MONTHLY_DECEMBER.isPlanSatisfyingCondition(decemberEventPlan),
                 true,
                 "1~25일은 크리스마스 프로모션 기간 전제 조건을 만족합니다 : true"
@@ -44,7 +44,7 @@ class PeriodConditionTest {
 
         // arrange & act & assert
         TestUtil.testCondition(
-                DecemberEventPlanFixture.AFTER_CHRISTMAS.getPlans(),
+                DecemberEventPlanFixtureByDay.AFTER_CHRISTMAS.getPlans(),
                 decemberEventPlan -> PeriodCondition.MONTHLY_DECEMBER.isPlanSatisfyingCondition(decemberEventPlan),
                 true,
                 "26~31일은 프로모션 기간 전제 조건을 만족합니다 : true"

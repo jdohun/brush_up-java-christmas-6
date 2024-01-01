@@ -6,7 +6,7 @@ import christmas.domain.model.classes.orderInfo.OrderInfo;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public enum DecemberEventPlanFixture {
+public enum DecemberEventPlanFixtureByDay {
     WEEKDAY(ExpectedVisitDayFixture.WEEKDAY),
     WEEKEND(ExpectedVisitDayFixture.WEEKEND),
     SPECIAL_DAY(ExpectedVisitDayFixture.SPECIAL_DAYS),
@@ -16,8 +16,8 @@ public enum DecemberEventPlanFixture {
 
     private final List<DecemberEventPlan> plans;
 
-    DecemberEventPlanFixture(ExpectedVisitDayFixture visitDayFixture) {
-        final OrderInfo orderInfo = OrderFixture.ALL_AROUND_1.toModel();
+    DecemberEventPlanFixtureByDay(ExpectedVisitDayFixture visitDayFixture) {
+        final OrderInfo orderInfo = OrderFixture.ALL_AROUND_BY_INCREASE_QUANTITY.toModel();
 
         this.plans = visitDayFixture.getDays().stream()
                 .map(expectedVisitDay -> new DecemberEventPlan(expectedVisitDay, orderInfo))
