@@ -12,7 +12,8 @@ public enum DecemberEventPlanFixtureByDay {
     SPECIAL_DAY(ExpectedVisitDayFixture.SPECIAL_DAYS),
     NOT_SPECIAL_DAY(ExpectedVisitDayFixture.NOT_SPECIAL_DAYS),
     UNTIL_CHRISTMAS(ExpectedVisitDayFixture.UNTIL_CHRISTMAS),
-    AFTER_CHRISTMAS(ExpectedVisitDayFixture.AFTER_CHRISTMAS);
+    AFTER_CHRISTMAS(ExpectedVisitDayFixture.AFTER_CHRISTMAS),
+    MONTHLY_DECEMBER(ExpectedVisitDayFixture.MONTHLY_DECEMBER);
 
     private final List<DecemberEventPlan> plans;
 
