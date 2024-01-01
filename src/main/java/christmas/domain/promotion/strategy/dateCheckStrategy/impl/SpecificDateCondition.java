@@ -33,8 +33,7 @@ public enum SpecificDateCondition implements DecemberEventPlanConditionChecker, 
 
     @Override
     public boolean isPlanSatisfyingCondition(DecemberEventPlan decemberEventPlan) {
-        DateCheckStrategy dateCheckStrategy = this::hasMatchingDate;
-        return decemberEventPlan.isDateSatisfyingDateCondition(dateCheckStrategy);
+        return decemberEventPlan.isDateSatisfyingDateCondition(this::hasMatchingDate);
     }
 
     @Override

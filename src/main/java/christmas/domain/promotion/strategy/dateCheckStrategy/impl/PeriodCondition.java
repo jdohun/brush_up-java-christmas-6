@@ -37,8 +37,7 @@ public enum PeriodCondition implements DecemberEventPlanConditionChecker, DateCh
 
     @Override
     public boolean isPlanSatisfyingCondition(DecemberEventPlan decemberEventPlan) {
-        DateCheckStrategy dateCheckStrategy = this::isDateWithinPeriod;
-        return decemberEventPlan.isDateSatisfyingDateCondition(dateCheckStrategy);
+        return decemberEventPlan.isDateSatisfyingDateCondition(this::isDateWithinPeriod);
     }
 
     @Override
