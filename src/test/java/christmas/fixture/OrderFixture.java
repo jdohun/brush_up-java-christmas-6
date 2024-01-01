@@ -17,17 +17,11 @@ public enum OrderFixture {
     DESSERT_BEVERAGE("초코케이크-1,제로콜라-1"),
     ONLY_DESERT("아이스크림-1");
 
-    private final String value;
-
     private static final OrderFixture[] ORDER_FIXTURES = values();
+    private final String value;
 
     OrderFixture(String value) {
         this.value = value;
-    }
-
-    public OrderInfo toModel() {
-        EnumMap<Menu, Integer> source = InputOrderParser.parseOrderInfo(value);
-        return OrderInfo.from(source);
     }
 
     public static List<DecemberEventPlan> toPlans() {
@@ -36,5 +30,16 @@ public enum OrderFixture {
         return Arrays.stream(ORDER_FIXTURES)
                 .map(orderFixture -> new DecemberEventPlan(expectedVisitDay, orderFixture.toModel()))
                 .collect(Collectors.toList());
+    }
+
+    public OrderInfo toModel() {
+        EnumMap<Menu, Integer> source = InputOrderParser.parseOrderInfo(value);
+        return OrderInfo.from(source);
+    }
+
+    public DecemberEventPlan toPlan() {
+        final ExpectedVisitDay expectedVisitDay = ExpectedVisitDay.from(1);
+
+        return new DecemberEventPlan(expectedVisitDay, this.toModel());
     }
 }
