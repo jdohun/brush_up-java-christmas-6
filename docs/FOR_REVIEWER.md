@@ -125,6 +125,4 @@ public boolean isPlanSatisfyingCondition(DecemberEventPlan decemberEventPlan) {
 
 ### p.s.
 
-본 설명은 `zangsu`
-님의 [FOR_REVIEWER.md](https://github.com/zangsu/java-christmas-6-zangsu/pull/22/files#diff-d4ea107e20a2eb0ed3b11c59686e3686e94e7d450c9bd0d1dabd85cf92ca7788)
-를 레퍼런스하였습니다.
+본 설명은 `zangsu` 님의 [FOR_REVIEWER.md](https://github.com/zangsu/java-christmas-6-zangsu/pull/22/files#diff-d4ea107e20a2eb0ed3b11c59686e3686e94e7d450c9bd0d1dabd85cf92ca7788)를 레퍼런스하였습니다.
