@@ -17,7 +17,7 @@ class DiscountByDecemberEventPlanTest {
 
     private void testDiscountByDecemberEventPlan(final int discountAmount, DiscountByDecemberEventPlan discounter, List<Integer> expected) {
         // arrange
-        final List<DecemberEventPlan> plans = provide();
+        final List<DecemberEventPlan> plans = OrderFixture.toPlans();
 
         // act
         final List<Integer> results = IntStream.range(0, plans.size())
@@ -26,14 +26,6 @@ class DiscountByDecemberEventPlanTest {
 
         // assert
         assertThat(results).containsExactlyElementsOf(expected);
-    }
-
-    private List<DecemberEventPlan> provide() {
-        final ExpectedVisitDay expectedVisitDay = ExpectedVisitDay.from(1);
-
-        return Arrays.stream(OrderFixture.values())
-                .map(orderFixture -> new DecemberEventPlan(expectedVisitDay, orderFixture.toModel()))
-                .collect(Collectors.toList());
     }
 
     @DisplayName("메인 메뉴의 개수에 따라 할인 금액이 정해진다.")
