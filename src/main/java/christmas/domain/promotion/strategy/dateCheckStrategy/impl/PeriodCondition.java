@@ -1,13 +1,15 @@
 package christmas.domain.promotion.strategy.dateCheckStrategy.impl;
 
 import christmas.domain.model.classes.decemberEventPlan.DecemberEventPlan;
+import christmas.domain.promotion.strategy.dateCheckStrategy.DateCheckStrategy;
+import christmas.domain.promotion.strategy.dateCheckStrategy.DecemberEventPlanConditionChecker;
 
 import java.time.LocalDate;
 
 import static christmas.domain.promotion.context.ChristmasPromotionPrecondition.EVENT_MONTH;
 import static christmas.domain.promotion.context.ChristmasPromotionPrecondition.EVENT_YEAR;
 
-public enum PeriodCondition implements DecemberEventPlanConditionChecker {
+public enum PeriodCondition implements DecemberEventPlanConditionChecker, DateCheckStrategy {
      UNTIL_CHRISTMAS(
             LocalDate.of(EVENT_YEAR, EVENT_MONTH, 1),
             LocalDate.of(EVENT_YEAR, EVENT_MONTH, 25)
@@ -28,12 +30,19 @@ public enum PeriodCondition implements DecemberEventPlanConditionChecker {
         this.periodEnds = periodEnds;
     }
 
+    // DateCheckStrategy
     private boolean isDateWithinPeriod(LocalDate dateOfPlan) {
         return !dateOfPlan.isBefore(periodStarts) && !dateOfPlan.isAfter(periodEnds);
     }
 
     @Override
     public boolean isPlanSatisfyingCondition(DecemberEventPlan decemberEventPlan) {
-        return decemberEventPlan.isDateSatisfyingDateCondition(this::isDateWithinPeriod);
+        DateCheckStrategy dateCheckStrategy = this::isDateWithinPeriod;
+        return decemberEventPlan.isDateSatisfyingDateCondition(dateCheckStrategy);
+    }
+
+    @Override
+    public boolean isSatisfyingCondition(LocalDate date) {
+        return isDateWithinPeriod(date);
     }
 }
