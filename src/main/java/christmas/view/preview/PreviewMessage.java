@@ -1,4 +1,4 @@
-package christmas.view.outputView.preview;
+package christmas.view.preview;
 
 enum PreviewMessage {
     EVENT_PREVIEW_TITLE_FORMAT("12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!" + System.lineSeparator()),
