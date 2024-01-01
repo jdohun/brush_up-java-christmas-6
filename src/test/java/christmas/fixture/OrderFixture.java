@@ -1,10 +1,15 @@
 package christmas.fixture;
 
+import christmas.domain.model.classes.decemberEventPlan.DecemberEventPlan;
+import christmas.domain.model.classes.expectedVisitDay.ExpectedVisitDay;
 import christmas.domain.model.classes.orderInfo.OrderInfo;
 import christmas.domain.model.enums.menu.Menu;
 import christmas.parser.InputOrderParser;
 
+import java.util.Arrays;
 import java.util.EnumMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public enum OrderFixture {
     ALL_AROUND_BY_INCREASE_QUANTITY("양송이수프-1,티본스테이크-2,초코케이크-3,제로콜라-4"),
@@ -14,6 +19,8 @@ public enum OrderFixture {
 
     private final String value;
 
+    private static final OrderFixture[] ORDER_FIXTURES = values();
+
     OrderFixture(String value) {
         this.value = value;
     }
@@ -21,5 +28,13 @@ public enum OrderFixture {
     public OrderInfo toModel() {
         EnumMap<Menu, Integer> source = InputOrderParser.parseOrderInfo(value);
         return OrderInfo.from(source);
+    }
+
+    public static List<DecemberEventPlan> toPlans() {
+        final ExpectedVisitDay expectedVisitDay = ExpectedVisitDay.from(1);
+
+        return Arrays.stream(ORDER_FIXTURES)
+                .map(orderFixture -> new DecemberEventPlan(expectedVisitDay, orderFixture.toModel()))
+                .collect(Collectors.toList());
     }
 }
