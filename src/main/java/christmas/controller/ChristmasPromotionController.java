@@ -10,7 +10,7 @@ import christmas.dto.ChristmasPromotionPreview;
 import christmas.dto.TotalBenefitAmount;
 import christmas.dto.TotalDiscountAmount;
 import christmas.dto.TotalGiveawayAmount;
-import christmas.view.outputView.preview.Preview;
+import christmas.view.preview.Preview;
 
 import java.util.Optional;
 
