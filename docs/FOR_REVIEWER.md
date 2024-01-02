@@ -30,11 +30,11 @@
 
 - 단순히 값을 저장, 반환한다면 : `dto`
     - 따라서 현실 세계의 문제 미리보기에 필요한 프로모션 결과를 저장하지만</br>
-      단순히 값을 반환하기만하는 `ChristmasPromotionPreview`은 미리보기 라는 현실 세계는 dto 에 속하게 됩니다.
+      단순히 값을 반환하기만하는 `ChristmasPromotionPreview`는 dto 에 속하게 됩니다.
 
 ### Parser
 
-입력된 값의 형식을 검증함과 동시에 `model` 생성에 적절한 형태의 source 로 parsing 합니다.
+- 입력된 값의 형식을 검증함과 동시에 `model` 생성에 적절한 형태의 source 로 parsing 합니다.
 
 ### 입출력
 
@@ -42,13 +42,13 @@
     - 가장 기본적인 Input 에 대한 검증 기능을 가진 `InputValidator`
 - 사용자의 입력과 별도로 필수 출력 메시지에 대한 책임을 갖는 `OutputView`
 - 미리보기 출력에 대한 책임을 갖는 `Preview`
-- 예외 처리된 IllegalArgumentException 의 정보를 출력하기 위한 `IllegalArgumentErrorView`
+- 예외 처리된 IllegalArgumentException 의 정보를 출력하기 위한 `IllegalArgumentErrorView`</br></br>
 
 ## 구현 관련 고민 목록
 
 아래에는 제가 이번 어플리케이션을 구현하는 동안 해결하지 못했던 고민들입니다.</br>
 참고하시어 편하게 의견을 주신다면 정말 감사하겠습니다!</br>
-아래와 관련된 내용이 아니더라도 저의 코드에 대한 다양한 의견, 질문은 언제나 환영입니다!!!
+아래와 관련된 내용이 아니더라도 저의 코드에 대한 다양한 의견, 질문은 언제나 환영입니다!!!</br></br>
 
 ### 함수형 인터페이스의 패키징 방법
 
@@ -64,9 +64,9 @@ util 로 묶은 기능들이 과연 진짜로 `util` 한 가? 에 대한 질문�
 `DayOfWeekCondition`의 경우는 이미 멤버로 `DateCheckStrategy`를 가지고 있기 때문에 중복되고</br>
 `PeriodCondition`과 `SpecificDateCondition`은 `isSatisfyingCondition()`을 구현하면 충분하겠지만</br>
 각각의 Condition 들의 dateCheck 방식이 미묘하게 다르기 때문에</br>
-역할을 더 명확하게 드러내기 위해 따로 생성한 메소드를 다시 상속 오버라이드 메소드 내부에 위치시키는 불필요한 코드가 구현되버렸습니다.
+역할을 더 명확하게 드러내기 위해 따로 생성한 메소드를 다시 상속 오버라이드 메소드 내부에 위치시키는 불필요한 코드가 구현되버렸습니다.</br>
 
-`DiscountByDate` 와 `DateBasedDiscountStrategy` 의 패키징과 상속 역시 고민입니다.
+`DiscountByDate` 와 `DateBasedDiscountStrategy` 의 패키징과 상속 역시 고민입니다.</br></br>
 
 만약 리뷰어분들은</br>
 구현된 코드가 명확한 역할을 드러내는 메소드명을 유지하는 대신 상속 메서드 내부에 불필요한 코드를 작성</br>
@@ -83,7 +83,7 @@ public boolean isPlanSatisfyingCondition(DecemberEventPlan decemberEventPlan) {
 
 세 가지 방법 중 어느 것을 추천하실까요?</br>
 또한 상속을 포기하게 된다면 이 함수형 인터페이스들을 어떻게 패키징하는 것이 좋을까요?</br>
-상속을 포기하지 않고도 다른 방식으로 패키징 할 수 있는 방법이 있을까요?</br>
+상속을 포기하지 않고도 다른 방식으로 패키징 할 수 있는 방법이 있을까요?</br></br>
 
 ### dto 인가? domain > model 인가?
 
@@ -94,7 +94,7 @@ public boolean isPlanSatisfyingCondition(DecemberEventPlan decemberEventPlan) {
 `TotalBenefitAmount` : 총혜택 금액을 통해 부여할 뱃지를 결정하는데요</br>
 내부를 살펴보면 단순히 amount 를 저장하고 있을 뿐 어떠한 기능도 없습니다.</br>
 
-두 가지 기준 중 어느 것에 초점을 맞춰서 패키징하는 것을 선호하실까요?
+두 가지 기준 중 어느 것에 초점을 맞춰서 패키징하는 것을 선호하실까요?</br></br>
 
 ### 테스트 구현
 
@@ -106,7 +106,7 @@ public boolean isPlanSatisfyingCondition(DecemberEventPlan decemberEventPlan) {
 
 사실 이번 복습과정이 꽤나 길어졌고 빨리 마무리하고 싶은 마음에 생략했지만 찝찝한 마음입니다.</br>
 
-리뷰어분들의 의견은 어떠신지요?
+리뷰어분들의 의견은 어떠신지요?</br></br>
 
 ### 오버엔지니어링
 
@@ -114,7 +114,7 @@ public boolean isPlanSatisfyingCondition(DecemberEventPlan decemberEventPlan) {
 미션을 완성하는 것보다 `미션을 통한 학습`이 더 중요한 목표라고 생각했기 때문인데요.</br>
 이 때문에 미션 자체는 굉장히 간단한 내용이지만 그에 비해 어플리케이션의 사이즈가 너무 커진 것 같습니다.</br>
 
-만약 한번 더 복습한다면 어떤 부분을 위주로 사이즈를 줄여야할지 리뷰어분들의 도움이 필요합니다!</br>
+만약 한번 더 복습한다면 어떤 부분을 위주로 사이즈를 줄여야할지 리뷰어분들의 도움이 필요합니다!</br></br>
 
 ## 마치며
 
